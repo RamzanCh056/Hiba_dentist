@@ -4,17 +4,21 @@ import 'dart:ffi';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:hiba_dentist/service/costmetic_dencity.dart';
 import 'package:hiba_dentist/drawer.dart';
 import 'package:hiba_dentist/model/before_after.dart';
 import 'package:hiba_dentist/model/feedback_model.dart';
 import 'package:hiba_dentist/model/services.dart';
 import 'package:hiba_dentist/model/slider_model.dart';
+import 'package:hiba_dentist/service/root-treatment.dart';
 import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import 'service/dental_implement.dart';
   var first = 'http://drhibasaadeh.com';
 
 class Services extends StatefulWidget {
@@ -211,14 +215,20 @@ class _ServicesState extends State<Services> {
                                     
                                 
                                          
-                                             Container(
-                                                 width: double.infinity,
-                                                height:180,
-                                                child: Image.network(
-                                                                                           '${first + snapshot.data![0].serviceImage.toString()}',
-                                                                                           fit: BoxFit.fill,
-                                                                                  )
-                                                                                  ),
+                                             GestureDetector(
+                                               onTap: (){
+                                                 Navigator.push(context, MaterialPageRoute(builder: (context)=>   Costemetic_density(),));
+                                              
+                                               },
+                                               child: Container(
+                                                   width: double.infinity,
+                                                  height:180,
+                                                  child: Image.network(
+                                                                                             '${first + snapshot.data![0].serviceImage.toString()}',
+                                                                                             fit: BoxFit.fill,
+                                                                                    )
+                                                                                    ),
+                                             ),
                                              
                         
                      SizedBox(
@@ -232,14 +242,17 @@ class _ServicesState extends State<Services> {
                         ],),),
                      ),
                   SizedBox(height: 30,),
-                    Container(
-                      width: double.infinity,
-                     height:180,
-                     child: Image.network(
-                                                                '${first + snapshot.data![1].serviceImage.toString()}',
-                                                                fit: BoxFit.fill,
-                                                       )
-                                                       ),
+                    GestureDetector(
+                      onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>   Dental(),));},
+                      child: Container(
+                        width: double.infinity,
+                       height:180,
+                       child: Image.network(
+                                                                  '${first + snapshot.data![1].serviceImage.toString()}',
+                                                                  fit: BoxFit.fill,
+                                                         )
+                                                         ),
+                    ),
                                               SizedBox(
                        height: 60,
                        child: Container(
@@ -290,14 +303,19 @@ class _ServicesState extends State<Services> {
                           Text("Teeth Whitening", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,), ),
                         ],),),
                      ),
-                                                 SizedBox(height: 30,),    Container(
-                                                    width: double.infinity,
-                                                   height:180,
-                                                   child: Image.network(
-                                                                                              '${first + snapshot.data![4].serviceImage.toString()}',
-                                                                                              fit: BoxFit.fill,
-                                                                                     )
-                                                                                     ),
+                                                 SizedBox(height: 30,),    GestureDetector(onTap: (){
+                                                  
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>     root(),));
+                                                 },
+                                                   child: Container(
+                                                      width: double.infinity,
+                                                     height:180,
+                                                     child: Image.network(
+                                                                                                '${first + snapshot.data![4].serviceImage.toString()}',
+                                                                                                fit: BoxFit.fill,
+                                                                                       )
+                                                                                       ),
+                                                 ),
                                                SizedBox(
                        height: 60,
                        child: Container(

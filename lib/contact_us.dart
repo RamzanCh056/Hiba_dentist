@@ -13,6 +13,7 @@ import 'package:hiba_dentist/model/services.dart';
 import 'package:hiba_dentist/model/slider_model.dart';
 import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:typed_data';
@@ -39,7 +40,7 @@ class contact_us extends StatefulWidget {
   bool _multiPick = false;
   FileType _pickingType = FileType.any;
   TextEditingController _controller = TextEditingController();
-
+  
 
   _launchMap() async {
     final String googleMapsUrl = "comgooglemaps://?center=$lat,$lng";
@@ -53,7 +54,7 @@ class contact_us extends StatefulWidget {
     } else {
       throw "Couldn't launch URL";
     }
-  }
+  }  
     
   void ContactUs( context ,name,email_id,subject,message) async{
 
@@ -118,13 +119,31 @@ class _contact_usState extends State<contact_us> {
   TextEditingController emailController = TextEditingController();
     TextEditingController subjectController = TextEditingController();
      TextEditingController messageController = TextEditingController();
-       @override
+     static const _initialCameraPosition = CameraPosition(
+    target: LatLng(31.975697, 35.859400),
+    zoom: 11.5,
+  );
+
+  late GoogleMapController _googleMapController;
+  List<Marker> _marker=[];
+   List<Marker>_List=const[
+   Marker(markerId: MarkerId("1"),
+   position:  LatLng(31.975697, 35.859400),
+   infoWindow: InfoWindow(title: "Dr.Hiba Saadeh")
+   )
+   ];
+
+  @override
+ 
   void dispose() {
     // Clean up the controller when the widget is disposed.
     emailController.dispose();
     nameController.dispose();
     subjectController.dispose();
     messageController.dispose();
+       _googleMapController.dispose();
+       _marker.addAll(_List);
+    super.dispose();
     super.dispose();
   }
   // #EEF9FF;
@@ -544,8 +563,25 @@ class _contact_usState extends State<contact_us> {
                       ),
                     ],
                 ),
-                SizedBox(height: 10,),
-          
+                SizedBox(height: 30,),
+               Container(
+                height: 450.0,
+                width: double.infinity,
+              
+                  alignment: Alignment.center,
+                 
+                  child:  GoogleMap(
+                      markers: Set<Marker>.of(_marker),
+                      // myLocationButtonEnabled: false,
+                      // zoomControlsEnabled: false,
+                      initialCameraPosition: _initialCameraPosition,
+                      onMapCreated: (controller) =>
+                          _googleMapController = controller,
+                    ),
+               
+                
+              ),
+                 SizedBox(height: 10,),
               ],
             ),
           ),

@@ -214,8 +214,8 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                        
                                            Container(
-                                                       height:200,
-                                                       width: 380,
+                                                       height:230,
+                                                       //width: 280,
                                                         child: Image.network(
                                                       '${first + snapshot.data![0].carouselImage.toString()}',
                                                       fit: BoxFit.fill,
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
 
                                                                                           SizedBox(width: 10,),
                                                                                              Container(
-                                                     height:190,
+                                                     height:230,
                                                         child: Image.network(
                                                       '${first + snapshot.data![1].carouselImage.toString()}',
                                                       fit: BoxFit.fill,
@@ -236,7 +236,7 @@ class _HomePageState extends State<HomePage> {
                                                                                           ),
                                                                                            SizedBox(width: 10,),
                                                                                              Container(
-                                                    height:190,
+                                                    height:230,
                                                         child: Image.network(
                                                       '${first + snapshot.data![2].carouselImage.toString()}',
                                                       fit: BoxFit.fill,
@@ -246,7 +246,7 @@ class _HomePageState extends State<HomePage> {
                                                                                           ),
                                                                                            SizedBox(width: 10,),
                                                                                              Container(
-                                                      height:190,
+                                                      height:230,
                                                         child: Image.network(
                                                       '${first + snapshot.data![3].carouselImage.toString()}',
                                                       fit: BoxFit.fill,
@@ -256,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                                                                           ),
                                                                                            SizedBox(width: 10,),
                                                                                              Container(
-                                                     height:190,
+                                                     height:230,
                                                         child: Image.network(
                                                       '${first + snapshot.data![4].carouselImage.toString()}',
                                                       fit: BoxFit.fill,
@@ -696,49 +696,52 @@ class _HomePageState extends State<HomePage> {
           ),
                   SizedBox(height: 30,),
                       CarouselSlider(
-           items: [   ListView(children: [Stack(
+           items: [   Stack(
                clipBehavior: Clip.none,
                      
              children: [
             
-                       Container(
-              height: 580,
-              width: double.infinity,
-              color:  Color.fromARGB(255, 201, 219, 233),
-               child:Column(children: [
-                  Container(
-                     height: 290,
-                 width: double.infinity,
-                                  child: Image.network("http://drhibasaadeh.com/media/serviceImg/CosmeticDen.jpg",fit: BoxFit.fill,),
-               ),
-               SizedBox(height: 45,),
-                   Text("Cosmetic Dentistry", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 110,right: 110),
-                     child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
-                   ),
-               ListTile(
-           
-                 title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                 trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-               ),
-                 ListTile(
-           
-                 title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                 trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-               ),
-                ListTile(
-           
-                 title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                 trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-               )
-                  
-               ],)
-                   
-                     
-           ),
+                       SingleChildScrollView(
+                         child: Container(
+                                     height: 580,
+                                     width: double.infinity,
+                                     color:  Color.fromRGBO(201, 219, 233, 1),
+                                      child:Column(children: [
+                                         Container(
+                                            height: 290,
+                                        width: double.infinity,
+                                    child: Image.network("http://drhibasaadeh.com/media/serviceImg/CosmeticDen.jpg",fit: BoxFit.fill,),
+                                      ),
+                                      SizedBox(height: 45,),
+                                          Text("Cosmetic Dentistry", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 110,right: 110),
+                                            child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
+                                          ),
+                                   Column(children: [  ListTile(
+                                  
+                                        title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                        trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                      ),
+                                        ListTile(
+                                  
+                                        title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                        trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                      ),
+                                       ListTile(
+                                  
+                                        title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                        trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                      )
+                                      ],)
+                                         
+                                      ],)
+                                          
+                                            
+                                  ),
+                       ),
              Positioned(
-            right: 90,
+            right: 97,
             
             bottom: 265,
             child:  Card(
@@ -752,7 +755,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                 ),
                   Positioned(
-            right: 60,
+            right: 68,
             
             top: 545,
             child:  Card( color: Color.fromARGB(255, 1, 11, 66),                         //  elevation: 5,
@@ -765,51 +768,53 @@ class _HomePageState extends State<HomePage> {
                 )
               
            ],
-           ),],),
+           ),
            //
-           ListView(children: [Stack(
+           Stack(
                clipBehavior: Clip.none,
                      
              children: [
             
-                       Container(
-              height: 580,
-              width: double.infinity,
-              color:  Color.fromARGB(255, 201, 219, 233),
-               child:Column(children: [
-                  Container(
-                     height: 290,
-                 width: double.infinity,
-                                  child: Image.network("http://drhibasaadeh.com/media/serviceImg/dental_implant.jpg",fit: BoxFit.fill,),
-               ),
-               SizedBox(height: 45,),
-                   Text("Dental Implants", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 110,right: 110),
-                     child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
-                   ),
-               ListTile(
-           
-                 title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                 trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-               ),
-                 ListTile(
-           
-                 title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                 trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-               ),
-                ListTile(
-           
-                 title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                 trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-               )
-                  
-               ],)
-                   
-                     
-           ),
+                       SingleChildScrollView(
+                         child: Container(
+                                     height: 580,
+                                     width: double.infinity,
+                                     color:  Color.fromARGB(255, 201, 219, 233),
+                                      child:Column(children: [
+                                         Container(
+                                            height: 290,
+                                        width: double.infinity,
+                                    child: Image.network("http://drhibasaadeh.com/media/serviceImg/dental_implant.jpg",fit: BoxFit.fill,),
+                                      ),
+                                      SizedBox(height: 45,),
+                                          Text("Dental Implants", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 110,right: 110),
+                                            child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
+                                          ),
+                                      ListTile(
+                                  
+                                        title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                        trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                      ),
+                                        ListTile(
+                                  
+                                        title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                        trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                      ),
+                                       ListTile(
+                                  
+                                        title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                        trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                      )
+                                         
+                                      ],)
+                                          
+                                            
+                                  ),
+                       ),
              Positioned(
-            right: 90,
+            right: 97,
             
            bottom: 265,
             child:  Card(
@@ -823,7 +828,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                 ),
                   Positioned(
-            right: 60,
+            right: 68,
             
             top: 545,
             child:  Card( color: Color.fromARGB(255, 1, 11, 66),                         //  elevation: 5,
@@ -835,50 +840,52 @@ class _HomePageState extends State<HomePage> {
                                   ),
                 )
               
-           ],)],),
-            ListView(children: [Stack(
+           ],),
+            Stack(
                  clipBehavior: Clip.none,
                        
                children: [
               
-                         Container(
-                height: 580,
-                width: double.infinity,
-                color:  Color.fromARGB(255, 201, 219, 233),
-                 child:Column(children: [
-                    Container(
-                       height: 290,
-                   width: double.infinity,
-                                    child: Image.network("http://drhibasaadeh.com/media/serviceImg/service-3_h0gXNnD.jpg",fit: BoxFit.fill,),
-                 ),
-                 SizedBox(height: 45,),
-                     Text("Dental Bridges", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
-                     Padding(
-                       padding: const EdgeInsets.only(left: 110,right: 110),
-                       child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
-                     ),
-                 ListTile(
-             
-                   title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 ),
-                   ListTile(
-             
-                   title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 ),
-                  ListTile(
-             
-                   title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 )
-                    
-                 ],)
-                     
-                       
-             ),
+                         SingleChildScrollView(
+                           child: Container(
+                                         height: 580,
+                                         width: double.infinity,
+                                         color:  Color.fromARGB(255, 201, 219, 233),
+                                          child:Column(children: [
+                                             Container(
+                                                height: 290,
+                                            width: double.infinity,
+                                      child: Image.network("http://drhibasaadeh.com/media/serviceImg/service-3_h0gXNnD.jpg",fit: BoxFit.fill,),
+                                          ),
+                                          SizedBox(height: 45,),
+                                              Text("Dental Bridges", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 110,right: 110),
+                                                child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
+                                              ),
+                                          ListTile(
+                                      
+                                            title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          ),
+                                            ListTile(
+                                      
+                                            title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          ),
+                                           ListTile(
+                                      
+                                            title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          )
+                                             
+                                          ],)
+                                              
+                                                
+                                      ),
+                         ),
                Positioned(
-              right: 90,
+              right: 97,
               
              bottom: 265,
               child:  Card(
@@ -892,7 +899,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                   ),
                     Positioned(
-              right: 60,
+              right: 68,
               
               top: 545,
               child:  Card( color: Color.fromARGB(255, 1, 11, 66),                         //  elevation: 5,
@@ -904,54 +911,56 @@ class _HomePageState extends State<HomePage> {
                                     ),
                   )
                 
-             ],)],),
-               ListView(children: [Stack(
+             ],),
+               Stack(
                  clipBehavior: Clip.none,
                        
                children: [
-              
-                         Container(
-                height: 580,
-                width: double.infinity,
-                color:  Color.fromARGB(255, 201, 219, 233),
-                 child:Column(children: [
-                    Container(
-                       height: 290,
-                   width: double.infinity,
-                                    child: Image.network("http://drhibasaadeh.com/media/serviceImg/Teeth_White.jpg",fit: BoxFit.fill,),
-                 ),
-                 SizedBox(height: 45,),
-                     Text("Teeth Whitening", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
-                     Padding(
-                       padding: const EdgeInsets.only(left: 110,right: 110),
-                       child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
-                     ),
-                 ListTile(
-             
-                   title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 ),
-                   ListTile(
-             
-                   title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 ),
-                  ListTile(
-             
-                   title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 )
-                    
-                 ],)
-                     
-                       
-             ),
+                             
+                         SingleChildScrollView(
+                           child: Container(
+                                         height: 580,
+                                         width: double.infinity,
+                                         color:  Color.fromARGB(255, 201, 219, 233),
+                                          child:Column(children: [
+                                             Container(
+                                                height: 290,
+                                            width: double.infinity,
+                                      child: Image.network("http://drhibasaadeh.com/media/serviceImg/Teeth_White.jpg",fit: BoxFit.fill,),
+                                          ),
+                                          SizedBox(height: 45,),
+                                              Text("Teeth Whitening", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 110,right: 110),
+                                                child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
+                                              ),
+                                          ListTile(
+                              
+                                            title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          ),
+                                            ListTile(
+                              
+                                            title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          ),
+                                           ListTile(
+                              
+                                            title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          )
+                                             
+                                          ],)
+                                              
+                                                
+                              ),
+                         ),
                Positioned(
-              right: 90,
-              
-            bottom: 265,
-              child:  Card(
-              color:  Color.fromARGB(255, 201, 219, 233),
+                             right: 97,
+                             
+                           bottom: 265,
+                             child:  Card(
+                             color:  Color.fromARGB(255, 201, 219, 233),
                                    //  elevation: 5,
                                       child: Container(
                height: 60,
@@ -961,10 +970,10 @@ class _HomePageState extends State<HomePage> {
                                     ),
                   ),
                     Positioned(
-              right: 80,
-              
-              top: 545,
-              child:  Card( color: Color.fromARGB(255, 1, 11, 66),                         //  elevation: 5,
+                             right: 68,
+                             
+                             top: 545,
+                             child:  Card( color: Color.fromARGB(255, 1, 11, 66),                         //  elevation: 5,
                                       child: Container(
                height: 50,
                width: 150,
@@ -973,51 +982,53 @@ class _HomePageState extends State<HomePage> {
                                     ),
                   )
                 
-             ],)],),
-             ListView(children: [Stack(
+                            ],),
+             Stack(
                  clipBehavior: Clip.none,
                        
                children: [
               
-                         Container(
-                height: 580,
-                width: double.infinity,
-                color:  Color.fromARGB(255, 201, 219, 233),
-                 child:Column(children: [
-                    Container(
-                       height: 290,
-                   width: double.infinity,
-                                    child: Image.network("http://drhibasaadeh.com/media/serviceImg/rootcanal.jpg",fit: BoxFit.fill,),
-                 ),
-                 SizedBox(height: 45,),
-                     Text("Root Canal Treatment", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
-                     Padding(
-                       padding: const EdgeInsets.only(left: 110,right: 110),
-                       child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
-                     ),
-                 ListTile(
-             
-                   title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 ),
-                   ListTile(
-             
-                   title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 ),
-                  ListTile(
-             
-                   title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
-                   trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
-                 )
-                    
-                 ],)
-                     
-                       
-             ),
+                         SingleChildScrollView(
+                           child: Container(
+                                         height: 580,
+                                         width: double.infinity,
+                                         color:  Color.fromARGB(255, 201, 219, 233),
+                                          child:Column(children: [
+                                             Container(
+                                                height: 290,
+                                            width: double.infinity,
+                                      child: Image.network("http://drhibasaadeh.com/media/serviceImg/rootcanal.jpg",fit: BoxFit.fill,),
+                                          ),
+                                          SizedBox(height: 45,),
+                                              Text("Root Canal Treatment", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 110,right: 110),
+                                                child: Divider(thickness: 1,color:  Color.fromARGB(255, 1, 11, 66),),
+                                              ),
+                                          ListTile(
+                                      
+                                            title: Text("Modern Equipment ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          ),
+                                            ListTile(
+                                      
+                                            title: Text("Proffessional Dentist ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          ),
+                                           ListTile(
+                                      
+                                            title: Text("24/7 Call Support ", style: TextStyle(fontSize: 18 , color:  Color.fromARGB(255, 1, 11, 66)), ),
+                                            trailing: Icon(Icons.done, size: 28,color:  Color.fromARGB(255, 1, 11, 66)),
+                                          )
+                                             
+                                          ],)
+                                              
+                                                
+                                      ),
+                         ),
                Positioned(
-              right: 90,
-           bottom: 265,
+              right: 97,
+                        bottom: 265,
               child:  Card(
               color:  Color.fromARGB(255, 201, 219, 233),
                                    //  elevation: 5,
@@ -1029,7 +1040,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                   ),
                     Positioned(
-              right: 80,
+              right: 68,
               
               top: 545,
               child:  Card( color: Color.fromARGB(255, 1, 11, 66),                         //  elevation: 5,
@@ -1041,7 +1052,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                   )
                 
-             ],)],)
+             ],)
 
 
 
@@ -1083,48 +1094,50 @@ class _HomePageState extends State<HomePage> {
                                                                                                
                                                       child:Padding(
                                                         padding: const EdgeInsets.all(8.0),
-                                                        child: Column(
-                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                          children: [
-                                                          SizedBox(height: 6,),
-                                                         Row(
-                                                           mainAxisAlignment: MainAxisAlignment.center,
-                                                           children: [
-                                                             Text("I can/t thank Dr Hiba Saadeh\nenough. She is very professional\nunderstanding, caring and a delight\nto visit",style: TextStyle(fontSize: 15, color: Colors.white),
-                                                    ),
-                                                    
-                                                            
-                                                         ],),
-                                                    //       Row(
-                                                    //        mainAxisAlignment: MainAxisAlignment.center,
-                                                    //        children: [
-                                                    //          Text("enough. She is very professional,",style: TextStyle(fontSize: 15, color: Colors.white),
-                                                    // ),
-                                                    
-                                                            
-                                                    //      ],),
-                                                    //       Row(
-                                                    //        mainAxisAlignment: MainAxisAlignment.center,
-                                                    //        children: [
-                                                    //          Text("understanding, caring and a delight\n   to visit",style: TextStyle(fontSize: 15, color: Colors.white),
-                                                    // ),
-                                                    
-                                                            
-                                                        //  ],),
-                                                          SizedBox(height: 4,),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(left: 65,right: 65),
-                                                          child: Divider(thickness: 2,color: Colors.grey,),
+                                                        child: SingleChildScrollView(
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                            SizedBox(height: 6,),
+                                                           Row(
+                                                             mainAxisAlignment: MainAxisAlignment.center,
+                                                             children: [
+                                                               Text("I can/t thank Dr Hiba Saadeh\nenough. She is very professional\nunderstanding, caring and a delight\nto visit",style: TextStyle(fontSize: 15, color: Colors.white),
+                                                                                                            ),
+                                                                                                            
+                                                              
+                                                           ],),
+                                                                                                            //       Row(
+                                                                                                            //        mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                            //        children: [
+                                                                                                            //          Text("enough. She is very professional,",style: TextStyle(fontSize: 15, color: Colors.white),
+                                                                                                            // ),
+                                                                                                            
+                                                              
+                                                                                                            //      ],),
+                                                                                                            //       Row(
+                                                                                                            //        mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                            //        children: [
+                                                                                                            //          Text("understanding, caring and a delight\n   to visit",style: TextStyle(fontSize: 15, color: Colors.white),
+                                                                                                            // ),
+                                                                                                            
+                                                              
+                                                          //  ],),
+                                                            SizedBox(height: 4,),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(left: 65,right: 65),
+                                                            child: Divider(thickness: 2,color: Colors.grey,),
+                                                          ),
+                                                             SizedBox(height: 14,),
+                                                              Padding(
+                                                                padding: const EdgeInsets.all(8.0),
+                                                                child: Column(children: [
+                                                                   Text("Shavej Shaikh",style: TextStyle(fontSize: 16, color: Colors.white),),
+                                                                ],),
+                                                              ),
+                                                              SizedBox(height: 10,),
+                                                          ],),
                                                         ),
-                                                           SizedBox(height: 14,),
-                                                            Padding(
-                                                              padding: const EdgeInsets.all(8.0),
-                                                              child: Column(children: [
-                                                                 Text("Shavej Shaikh",style: TextStyle(fontSize: 16, color: Colors.white),),
-                                                              ],),
-                                                            ),
-                                                            SizedBox(height: 10,),
-                                                        ],),
                                                       )
                                                       
                                                     
