@@ -43,6 +43,8 @@ dependencies:
   file_picker: ^4.5.1
   loading_indicator: ^3.0.3
   google_maps_flutter: ^2.1.5
+  flutter_offline: ^2.1.0
+  flutter_spinkit: ^5.1.0
 
 
 dev_dependencies:

@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hiba_dentist/service/costmetic_dencity.dart';
 import 'package:hiba_dentist/drawer.dart';
@@ -29,6 +30,17 @@ class Services extends StatefulWidget {
 }
 
 class _ServicesState extends State<Services> {
+  bool _isLoading = false;
+  @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
    List<services> photoList = [];
     Future<List<services>> servicesfunction() async {
       
@@ -97,15 +109,30 @@ class _ServicesState extends State<Services> {
       //   centerTitle: true,
       // ),
 
-      body: SingleChildScrollView(
-        child: Column(children: [
+      body: SafeArea(
+        child: _isLoading
+            ? Center(
+                child: Container(
+             child:     SpinKitFadingCircle(
+               size: 60,
+        itemBuilder: (BuildContext context, int index) {
+        return DecoratedBox(
+        decoration: BoxDecoration(
+        color: index.isEven ? Colors.red : Colors.green,
+        ),
+        );
+        },
+      )
+                ),
+             
+              ): ListView(children: [
           SizedBox(height: 20,),
             FutureBuilder<before_after>(
                     future: beforeafter(),
                     builder: (context, snapshot) {
                       if (snapshot.data != null) {
                         var first = 'http://drhibasaadeh.com';
-      
+        
                         //  var second=snapshot.data!.beforeImage.toString();
                         //  var image=first+second;
                         print('image');
@@ -126,7 +153,7 @@ class _ServicesState extends State<Services> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-      
+        
                                           // CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.beforeImage![index].toString()),),
                                           // SizedBox(height: 10,),
                                          Row(children: [
@@ -150,7 +177,7 @@ class _ServicesState extends State<Services> {
                                                                                  ),
                                            ),
                                          ],),
-      
+        
                                           // SizedBox(
                                           //   height: 25,
                                           // ),
@@ -163,7 +190,7 @@ class _ServicesState extends State<Services> {
                             });
                       } else {
                         return Center(
-                          child: CircularProgressIndicator(),
+                          
                         );
                       }
                     }),
@@ -190,7 +217,7 @@ class _ServicesState extends State<Services> {
                     builder: (context,AsyncSnapshot<List<services>> snapshot) {
                       if (snapshot.data != null) {
                         var first = 'http://drhibasaadeh.com';
-      
+        
                         //  var second=snapshot.data!.beforeImage.toString();
                         //  var image=first+second;
                         print('image');
@@ -209,7 +236,7 @@ class _ServicesState extends State<Services> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.center,
                                     children: [
-      
+        
                                       // CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.beforeImage![index].toString()),),
                                       // SizedBox(height: 10,),
                                     
@@ -327,7 +354,7 @@ class _ServicesState extends State<Services> {
                         ],),),
                      ),
                                                
-      
+        
                                       // SizedBox(
                                       //   height: 25,
                                       // ),
@@ -339,13 +366,13 @@ class _ServicesState extends State<Services> {
                             });
                       } else {
                         return Center(
-                          child: CircularProgressIndicator(),
+                          ///child: CircularProgressIndicator(),
                         );
                       }
                     }),
-      
+        
             
-      
+        
         ],),
       ),
       ),

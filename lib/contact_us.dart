@@ -125,13 +125,17 @@ class _contact_usState extends State<contact_us> {
   );
 
   late GoogleMapController _googleMapController;
-  List<Marker> _marker=[];
-   List<Marker>_List=const[
-   Marker(markerId: MarkerId("1"),
-   position:  LatLng(31.975697, 35.859400),
-   infoWindow: InfoWindow(title: "Dr.Hiba Saadeh")
-   )
-   ];
+  //Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+
+ final Set<Marker> markers = new Set(); //markers for google map
+  static const LatLng showLocation = const LatLng(31.975697, 35.859400);
+  // List<Marker> _marker=[];
+  //  List<Marker>_List=const[
+  //  Marker(markerId: MarkerId("1"),
+  //  position:  LatLng(31.975697, 35.859400),
+  //  infoWindow: InfoWindow(title: "Dr.Hiba Saadeh")
+  //  )
+  //  ];
 
   @override
  
@@ -142,7 +146,7 @@ class _contact_usState extends State<contact_us> {
     subjectController.dispose();
     messageController.dispose();
        _googleMapController.dispose();
-       _marker.addAll(_List);
+      // _marker.addAll(_List);
     super.dispose();
     super.dispose();
   }
@@ -443,10 +447,10 @@ class _contact_usState extends State<contact_us> {
                       child: ElevatedButton(
                         
                          style: ElevatedButton.styleFrom(
-                   primary:  HexColor("#EEF9FF"),
+                   primary:  HexColor("#e9ecef"),
                  ),
                             onPressed: ()   => _openFileExplorer(),
-                            child: const Text("Chose file" , style: TextStyle(color: Colors.black,)),
+                            child: const Text("Choose file" , style: TextStyle(color: Colors.black,)),
                           ),
                     ),
                     
@@ -564,17 +568,24 @@ class _contact_usState extends State<contact_us> {
                     ],
                 ),
                 SizedBox(height: 30,),
-               Container(
-                height: 450.0,
+              Stack(children: [
+                 Container(
+                height: 460.0,
                 width: double.infinity,
               
                   alignment: Alignment.center,
                  
                   child:  GoogleMap(
-                      markers: Set<Marker>.of(_marker),
+                        zoomGesturesEnabled: true, //enable Zoom in, out on map
+                    initialCameraPosition: CameraPosition( //innital position in map
+                      target: showLocation, //initial position
+                      zoom: 18.0, //initial zoom level
+                    ),
+                    markers: getmarkers(), //markers to sho
+                    //  markers: Set<Marker>.of(_marker),
                       // myLocationButtonEnabled: false,
                       // zoomControlsEnabled: false,
-                      initialCameraPosition: _initialCameraPosition,
+                    //  initialCameraPosition: _initialCameraPosition,
                       onMapCreated: (controller) =>
                           _googleMapController = controller,
                     ),
@@ -582,6 +593,54 @@ class _contact_usState extends State<contact_us> {
                 
               ),
                  SizedBox(height: 10,),
+
+               Positioned(
+                 child:   SizedBox(height: 129, width: 240,
+               child: Card(
+                 color: Colors.white,
+                 elevation: 4,
+                 child: Padding(
+                   padding: const EdgeInsets.all(12.0),
+                   child: Column(children: [
+                     Row( mainAxisAlignment: MainAxisAlignment.start,
+                       children: [
+                         Text("Dr. Hiba Saadeh Dental Clinic", style: TextStyle(fontSize: 16, color: Colors.black),),
+                       ],
+                     ),
+                     SizedBox(height: 8,),
+                       Row( mainAxisAlignment: MainAxisAlignment.start,
+                         children: [
+                           Text("XVG5+7QC, Amman, Jordan", style: TextStyle(fontSize: 13, color: Colors.black),),
+                         ],
+                       ),
+                        SizedBox(height: 8,),
+                       Row(children: [
+                         SizedBox(width: 4,),
+                          Text("5.0", style: TextStyle(fontSize: 13, color: Colors.black),),
+                          Icon(Icons.star, color: Colors.yellow,),
+                            Icon(Icons.star, color: Colors.yellow,),
+                              Icon(Icons.star, color: Colors.yellow,),
+                                Icon(Icons.star, color: Colors.yellow,),
+                                  Icon(Icons.star, color: Colors.yellow,),
+                                  SizedBox(width: 4,),
+                                   Text("5 reviews", style: TextStyle(fontSize: 13, color: Colors.blue),),
+                       ],),
+                        SizedBox(height: 6,),
+                     GestureDetector(
+                       onTap: (){
+                          _launchMap();
+                       },
+                       child: Row( mainAxisAlignment: MainAxisAlignment.start,
+                         children: [
+                           Text("View larger map", style: TextStyle(fontSize: 13, color: Colors.blue),),
+                         ],
+                       ),
+                     ),
+                   ],),
+                 ),
+               ),
+               ),)
+              ],)
               ],
             ),
           ),
@@ -615,5 +674,42 @@ class _contact_usState extends State<contact_us> {
       _fileName =
           _paths != null ? _paths!.map((e) => e.name).toString() : '...';
     });
+  }
+    Set<Marker> getmarkers() { //markers to place on map
+    setState(() {
+      markers.add(Marker( //add first marker
+        markerId: MarkerId(showLocation.toString()),
+        position: showLocation, //position of marker
+        infoWindow: InfoWindow( //popup info 
+          title: 'Dr.Hiba Saadeh Dental Clinic',
+          snippet: 'Dr.Hiba Saadeh',
+        ),
+        icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+      ));
+
+      // markers.add(Marker( //add second marker
+      //   markerId: MarkerId(showLocation.toString()),
+      //   position: LatLng(27.7099116, 85.3132343), //position of marker
+      //   infoWindow: InfoWindow( //popup info 
+      //     title: 'Marker Title Second ',
+      //     snippet: 'My Custom Subtitle',
+      //   ),
+      //   icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+      // ));
+
+      // markers.add(Marker( //add third marker
+      //   markerId: MarkerId(showLocation.toString()),
+      //   position: LatLng(27.7137735, 85.315626), //position of marker
+      //   infoWindow: InfoWindow( //popup info 
+      //     title: 'Marker Title Third ',
+      //     snippet: 'My Custom Subtitle',
+      //   ),
+      //   icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+      // ));
+
+       //add more markers here 
+    });
+
+    return markers;
   }
 }
