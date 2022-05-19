@@ -189,7 +189,7 @@ class _contact_usState extends State<contact_us> {
                                       
                                       
                                       children: [
-                                        Text("CONTACT US",style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold), ),
+                                        Text("CONTACT US",style: TextStyle(fontSize: 21, color: Colors.black,), ),
                                       ],
                                     ),
                                     SizedBox(height: 15,),
@@ -208,8 +208,8 @@ class _contact_usState extends State<contact_us> {
                                            child: ListTile(
                                                                         leading:Icon(Icons.place, size: 28,color: Colors.black,) ,
                                                                      
-                                                                        title:   Text("Our Office",style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold),),
-                                                                        subtitle:   Text("Dr. Hiba Saadeh Dental Clinic عيادة الدكتورةهبة سعادة",style: TextStyle(fontSize: 18, color: Colors.black, ),),
+                                                                        title:   Text("Our Office",style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),),
+                                                                        subtitle:   Text("Dr. Hiba Saadeh Dental Clinic عيادة الدكتورةهبة سعادة",style: TextStyle(fontSize: 18,  ),),
                                          
                                          
                                                                            ),
@@ -233,8 +233,8 @@ class _contact_usState extends State<contact_us> {
                                        child: ListTile(
                                                                     leading:Icon(Icons.email,size: 28,color: Colors.black,) ,
                                                                  
-                                                                    title:   Text("Email Us",style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold),),
-                                                                    subtitle:   Text("info@example.com",style: TextStyle(fontSize: 18, color: Colors.black,),),
+                                                                    title:   Text("Email Us",style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),),
+                                                                    subtitle:   Text("info@example.com",style: TextStyle(fontSize: 18, ),),
                                      
                                      
                                                                        ),
@@ -256,8 +256,8 @@ class _contact_usState extends State<contact_us> {
                                                                       
                                                                       
                                                                      
-                                                                      title:   Text("Call Us",style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold),),
-                                                                      subtitle:   Text("+962 795258121",style: TextStyle(fontSize: 18, color: Colors.black,),),
+                                                                      title:   Text("Call Us",style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),),
+                                                                      subtitle:   Text("+962 795258121",style: TextStyle(fontSize: 18, ),),
                                        
                                        
                                                                          ),

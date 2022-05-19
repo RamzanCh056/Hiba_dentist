@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:before_after/before_after.dart';
 class Costemetic_density extends StatefulWidget {
   const Costemetic_density({ Key? key }) : super(key: key);
 
@@ -20,6 +21,10 @@ class _Costemetic_densityState extends State<Costemetic_density> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(children: [
+           Row( mainAxisAlignment: MainAxisAlignment.start,
+             children: [
+              IconButton(onPressed: (){   Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_new)),
+           ],),
                       SizedBox(height: 30,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -30,23 +35,33 @@ class _Costemetic_densityState extends State<Costemetic_density> {
                           SizedBox(height: 60,),
                  
                     Stack(children: [
-                        Row(children: [
-
-                          Container(height: 240,
-                          width: 195,
-                        child: Image.asset("images/before.jpg",fit: BoxFit.fill,),
+                        Container(
+                          width: double.infinity,
+                          child: Row(children: [
                         
-                        ),
-                         Container(height: 240,
-                         width:195,
-                        child: Image.asset("images/after.jpg",fit: BoxFit.fill,),
+                           Expanded(
+                                      flex: 1,
+                                      child: BeforeAfter(
+                                        beforeImage: Image.asset('images/before.jpg', fit:  BoxFit.fill,),
+                                        afterImage: Image.asset('images/after.jpg', fit:  BoxFit.fill,),
+                                      ),
+                                    ),
+                          //   Container(height: 240,
+                          //   width: 195,
+                          // child: Image.asset("images/before.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
+                          //  Container(height: 240,
+                          //  width:195,
+                          // child: Image.asset("images/after.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
                         
+                          ],),
                         ),
-
-                        ],),
 
                         Positioned(
-                          left: 15, bottom: 0, top: 0, right: 10,
+                          left: 25, bottom: 0, top: 0, right: 35,
                           child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                             

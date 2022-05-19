@@ -1,10 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+// import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hiba_dentist/Home.dart';
 import 'package:hiba_dentist/about_us.dart';
 import 'package:hiba_dentist/appointment.dart';
 import 'package:hiba_dentist/contact_us.dart';
 import 'package:hiba_dentist/services.dart';
+import 'package:get/get.dart';
 
 const TextStyle _textStyle = TextStyle(
   fontSize: 40,
@@ -15,11 +19,21 @@ const TextStyle _textStyle = TextStyle(
 
 class MaterialYou extends StatefulWidget {
   const MaterialYou({Key? key}) : super(key: key);
+  
 
   @override
   State<MaterialYou> createState() => _MaterialYouState();
 }
+final List locale = [
+    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
+    {'name': 'عربى', 'locale': Locale('ar', 'SA')},
+  ];
 
+  updateLanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
+ 
 class _MaterialYouState extends State<MaterialYou> {
   int _currentIndex = 0;
   List<Widget> pages = const [
@@ -32,12 +46,16 @@ class _MaterialYouState extends State<MaterialYou> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
+    // backgroundColor: Colors.black,
       body: Center(
         child: pages[_currentIndex],
+        
       ),
       bottomNavigationBar: NavigationBar(
+        
+         
         selectedIndex: _currentIndex,
+        
         onDestinationSelected: (int newIndex) {
           setState(() {
             _currentIndex = newIndex;
@@ -48,6 +66,7 @@ class _MaterialYouState extends State<MaterialYou> {
             selectedIcon: Icon(Icons.home),
             icon: Icon(Icons.home_outlined),
             label: 'Home',
+            
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.app_registration),
@@ -55,8 +74,8 @@ class _MaterialYouState extends State<MaterialYou> {
             label: 'Appointment',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.contact_page),
-            icon: Icon(Icons.contact_page_outlined),
+            selectedIcon: Icon(Icons.real_estate_agent),
+            icon: Icon(Icons.real_estate_agent_outlined),
             label: 'Service',
           ),
           NavigationDestination(
@@ -65,11 +84,11 @@ class _MaterialYouState extends State<MaterialYou> {
             label: 'Contact',
           ),
            NavigationDestination(
-            selectedIcon: Icon(Icons.real_estate_agent),
-            icon: Icon(Icons.real_estate_agent_outlined),
+            selectedIcon: Icon(Icons.group),
+            icon: Icon(Icons.group_outlined),
             label: 'About',
           ),
-          
+           
         ],
       
       ),

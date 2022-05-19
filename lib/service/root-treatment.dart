@@ -1,3 +1,4 @@
+import 'package:before_after/before_after.dart';
 import 'package:flutter/material.dart';
 class root extends StatefulWidget {
   const root({ Key? key }) : super(key: key);
@@ -20,6 +21,10 @@ class _rootState extends State<root> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(children: [
+             Row( mainAxisAlignment: MainAxisAlignment.start,
+             children: [
+              IconButton(onPressed: (){   Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_new)),
+           ],),
                       SizedBox(height: 30,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,24 +34,34 @@ class _rootState extends State<root> {
                         ],),
                           SizedBox(height: 60,),
                  
-                   Stack(children: [
-                        Row(children: [
-
-                          Container(height: 240,
-                          width: 195,
-                        child: Image.network("http://drhibasaadeh.com/media/service_bef_aft_img/service-1.jpg",fit: BoxFit.fill,),
+                  Stack(children: [
+                        Container(
+                          width: double.infinity,
+                          child: Row(children: [
                         
-                        ),
-                         Container(height: 240,
-                         width:195,
-                        child: Image.network("http://drhibasaadeh.com/media/service_bef_aft_img/service-2.jpg",fit: BoxFit.fill,),
+                           Expanded(
+                                      flex: 1,
+                                      child: BeforeAfter(
+                                        beforeImage: Image.network('http://drhibasaadeh.com/media/service_bef_aft_img/service-1.jpg', fit:  BoxFit.fill,),
+                                        afterImage: Image.network('http://drhibasaadeh.com/media/service_bef_aft_img/service-2.jpg', fit:  BoxFit.fill,),
+                                      ),
+                                    ),
+                          //   Container(height: 240,
+                          //   width: 195,
+                          // child: Image.asset("images/before.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
+                          //  Container(height: 240,
+                          //  width:195,
+                          // child: Image.asset("images/after.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
                         
+                          ],),
                         ),
-
-                        ],),
 
                         Positioned(
-                          left: 15, bottom: 0, top: 0, right: 10,
+                          left: 25, bottom: 0, top: 0, right: 35,
                           child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                             

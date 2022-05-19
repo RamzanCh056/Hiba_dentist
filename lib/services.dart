@@ -1,6 +1,7 @@
 
 import 'dart:ffi';
 
+import 'package:before_after/before_after.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,6 +14,7 @@ import 'package:hiba_dentist/model/services.dart';
 import 'package:hiba_dentist/model/slider_model.dart';
 import 'package:hiba_dentist/service/root-treatment.dart';
 import 'package:http/http.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -113,20 +115,20 @@ class _ServicesState extends State<Services> {
         child: _isLoading
             ? Center(
                 child: Container(
-             child:     SpinKitFadingCircle(
-               size: 60,
-        itemBuilder: (BuildContext context, int index) {
-        return DecoratedBox(
-        decoration: BoxDecoration(
-        color: index.isEven ? Colors.red : Colors.green,
-        ),
-        );
-        },
-      )
+                  width: 80,
+             child:   LoadingIndicator(
+    indicatorType: Indicator.ballBeat, /// Required, The loading type of the widget
+    colors: const [Color.fromARGB(255, 1, 11, 66),],       /// Optional, The color collections
+    strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
+        /// Optional, Background of the widget
+    pathBackgroundColor: Colors.blue   /// Optional, the stroke backgroundColor
+)
+
                 ),
              
               ): ListView(children: [
           SizedBox(height: 20,),
+          
             FutureBuilder<before_after>(
                     future: beforeafter(),
                     builder: (context, snapshot) {
@@ -144,53 +146,66 @@ class _ServicesState extends State<Services> {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {},
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 12, right: 12, bottom: 12),
-                                  child:  Padding(
-                                      padding: const EdgeInsets.all(0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
+                                child: Column(
+                                 
+                                  children: [
         
-                                          // CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.beforeImage![index].toString()),),
-                                          // SizedBox(height: 10,),
-                                         Row(children: [
-                                            Expanded(
-                                              child: Container(
-                                                height:180,
-                                                child: Image.network(
-                                              '${first + snapshot.data!.beforeImage.toString()}',
-                                              fit: BoxFit.fill,
-                                                                                  )
-                                                                                  ),
-                                            ),
-                                            SizedBox(width: 5,),
-                                           Expanded(
-                                             child: Container(
-                                                height:180,
-                                                child: Image.network(
-                                              '${first + snapshot.data!.afterImage.toString()}',
-                                              fit: BoxFit.fill,
-                                                                                 )
-                                                                                 ),
-                                           ),
-                                         ],),
+                                    // CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.beforeImage![index].toString()),),
+                                    // SizedBox(height: 10,),
+                                   Stack(children: [
+                        Container(
+                       
+                          child: Row(children: [
+                        
+                           Expanded(
+                                flex: 1,
+                                child: BeforeAfter(
+                                  imageCornerRadius: 1,
+                                 
+                                 
+                                  imageWidth:double.infinity,
+                                  beforeImage: Image.network('${first + snapshot.data!.beforeImage.toString()}', fit: BoxFit.fill,),
+                                  afterImage: Image.network('${first + snapshot.data!.afterImage.toString()}',
+                                      fit: BoxFit.fill,),
+                                ),
+                                ),
+                          //   Container(height: 240,
+                          //   width: 195,
+                          // child: Image.asset("images/before.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
+                          //  Container(height: 240,
+                          //  width:195,
+                          // child: Image.asset("images/after.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
+                        
+                          ],),
+                        ),
+
+                        Positioned(
+                          left: 25, bottom: 0, top: 0, right: 35,
+                          child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                            
+                           Text("Before", style: TextStyle(fontSize: 22 , color: Colors.white ,fontWeight: FontWeight.bold,), ),
+                           
+                             Text("After", style: TextStyle(fontSize: 22 , color: Colors.white ,fontWeight: FontWeight.bold,), ),
+                        ],))
+                    ],),
+
         
-                                          // SizedBox(
-                                          //   height: 25,
-                                          // ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                    // SizedBox(
+                                    //   height: 25,
+                                    // ),
+                                  ],
+                                ),
                               
                               );
                             });
                       } else {
                         return Center(
-                          
+                               child: CircularProgressIndicator(),
                         );
                       }
                     }),
@@ -200,7 +215,7 @@ class _ServicesState extends State<Services> {
                      child: Row(
                           
                           children: [
-                          Text("OUR SERVICES_____", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                          Text("OUR SERVICES", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
                         ],),
                    ),
                    Padding(
@@ -208,7 +223,7 @@ class _ServicesState extends State<Services> {
                      child: Row(
                           
                           children: [
-                          Text("We Offer The Best Quality\n Dental Services ", style: TextStyle(fontSize: 23 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                          Text("We Offer The Best Quality\n Dental Services ", style: TextStyle(fontSize: 24 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
                         ],),
                    ),
                                   SizedBox(height: 20,),

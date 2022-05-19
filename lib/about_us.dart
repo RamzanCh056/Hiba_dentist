@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 class About_us extends StatefulWidget {
   const About_us({ Key? key }) : super(key: key);
 
@@ -35,17 +36,16 @@ class _About_usState extends State<About_us> {
           padding: const EdgeInsets.all(8.0),
           child:_isLoading
             ? Center(
-                child: Container(
-             child:     SpinKitFadingCircle(
-               size: 60,
-  itemBuilder: (BuildContext context, int index) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: index.isEven ? Colors.red : Colors.green,
-      ),
-    );
-  },
+                child:Container(
+                  width: 80,
+             child:   LoadingIndicator(
+    indicatorType: Indicator.ballBeat, /// Required, The loading type of the widget
+    colors: const [Color.fromARGB(255, 1, 11, 66),],       /// Optional, The color collections
+    strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
+        /// Optional, Background of the widget
+    pathBackgroundColor: Colors.blue   /// Optional, the stroke backgroundColor
 )
+
                 ),
                
               ):

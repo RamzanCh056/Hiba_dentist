@@ -26,16 +26,18 @@
   </intent>
 </queries>
    <application
-        android:label="hiba_dentist"
+        android:label="Dr Hiba Saadeh"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
       
         android:icon="@mipmap/ic_launcher">
         
         
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:usesCleartextTraffic="true"
+       
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

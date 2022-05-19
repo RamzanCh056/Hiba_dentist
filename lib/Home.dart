@@ -1,16 +1,19 @@
 import 'dart:ffi';
-
+import 'package:before_after/before_after.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hiba_dentist/drawer.dart';
 import 'package:hiba_dentist/model/before_after.dart';
 import 'package:hiba_dentist/model/feedback_model.dart';
 import 'package:hiba_dentist/model/services.dart';
 import 'package:hiba_dentist/model/slider_model.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
+import 'package:carousel_indicator/carousel_indicator.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -178,6 +181,17 @@ class _HomePageState extends State<HomePage> {
     Duration(seconds: 2),
     () => 'Data Loaded',
   );
+  
+    final List locale = [
+    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
+    {'name': 'عربى', 'locale': Locale('ar', 'SA')},
+  ];
+
+  updateLanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +207,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color.fromARGB(223, 255, 253, 253),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 1, 11, 66),
-        title: Text("Home"),
+        title: Text("Home" .tr),
         centerTitle: true,
       ),
       // body: SingleChildScrollView(
@@ -203,16 +217,15 @@ class _HomePageState extends State<HomePage> {
         child:_isLoading
             ? Center(
                 child: Container(
-             child:     SpinKitFadingCircle(
-               size: 60,
-  itemBuilder: (BuildContext context, int index) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: index.isEven ? Colors.red : Colors.green,
-      ),
-    );
-  },
+                  width: 80,
+             child:   LoadingIndicator(
+    indicatorType: Indicator.ballBeat, /// Required, The loading type of the widget
+    colors: const [Color.fromARGB(255, 1, 11, 66),],       /// Optional, The color collections
+    strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
+        /// Optional, Background of the widget
+    pathBackgroundColor: Colors.blue   /// Optional, the stroke backgroundColor
 )
+
                 ),
                 //  LoadingIndicator(
 
@@ -236,7 +249,9 @@ class _HomePageState extends State<HomePage> {
           children: [
             // CarouselSlider(
             //   items: [
-           
+         
+         
+ 
             FutureBuilder(
               
                 future: sliderfunction(),
@@ -247,111 +262,40 @@ class _HomePageState extends State<HomePage> {
                         shrinkWrap: true,
                         // scrollDirection: ax,
                         //    physics: NeverScrollableScrollPhysics(),
-                        itemCount: 1,
+                        itemCount:   1,
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(4),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                      height: 230,
-                                      //width: 280,
-                                      child: Image.network(
-                                        '${first + snapshot.data![0].carouselImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
-
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 230,
-                                      child: Image.network(
-                                        '${first + snapshot.data![1].carouselImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 230,
-                                      child: Image.network(
-                                        '${first + snapshot.data![2].carouselImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 230,
-                                      child: Image.network(
-                                        '${first + snapshot.data![3].carouselImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 230,
-                                      child: Image.network(
-                                        '${first + snapshot.data![4].carouselImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
-                                  //                                                 SizedBox(width: 10,),
-                                  //                                               Container(
-                                  //       height:190,
-                                  //             child: Image.network(
-                                  //           '${first + snapshot.data![5].carouselImage.toString()}',
-                                  //           fit: BoxFit.fill,
-                                  //                                               )
-
-                                  //                                               ),
-                                  //                                                 SizedBox(width: 10,),
-                                  //                                               Container(
-                                  //  height:190,
-                                  //             child: Image.network(
-                                  //           '${first + snapshot.data![6].carouselImage.toString()}',
-                                  //           fit: BoxFit.fill,
-                                  //                                               )
-
-                                  //                                               ),
-                                  //                                                 SizedBox(width: 10,),
-                                  //                                               Container(
-                                  //      height:190,
-                                  //             child: Image.network(
-                                  //           '${first + snapshot.data![7].carouselImage.toString()}',
-                                  //           fit: BoxFit.fill,
-                                  //                                               )
-
-                                  //                                               ),
-                                ],
-                              ),
-                            ),
-                          );
+                          return SizedBox(
+  height: 250.0,
+  width: 400,
+  child: Carousel(
+   
+    images: [
+      NetworkImage( '${first + snapshot.data![0].carouselImage.toString()}',),
+      NetworkImage( '${first + snapshot.data![1].carouselImage.toString()}',),
+         NetworkImage( '${first + snapshot.data![2].carouselImage.toString()}',),
+            NetworkImage( '${first + snapshot.data![3].carouselImage.toString()}',),
+               NetworkImage( '${first + snapshot.data![4].carouselImage.toString()}',),
+                  
+    ],
+     
+      dotSize: 7.0,
+      dotSpacing: 15.0,
+      dotColor: Color.fromARGB(255, 1, 11, 66),
+      indicatorBgPadding: 12.0,
+      dotBgColor: Colors.transparent,
+      borderRadius: false,
+      moveIndicatorFromBottom: 180.0,
+      noRadiusForIndicator: true,
+      overlayShadow: false,
+      overlayShadowColors: Colors.white,
+      overlayShadowSize: 0.7,
+  )
+);
                         });
                   } else {
                     return Center(
                         
-                        // child: LoadingIndicator(
-                        //     indicatorType: Indicator.ballSpinFadeLoader,
-
-                        //     /// Required, The loading type of the widget
-                        //     colors: const [Colors.blue],
-
-                        //     /// Optional, The color collections
-                        //     strokeWidth: 1,
-
-                        //     /// Optional, The stroke of the line, only applicable to widget which contains line
-                        //     backgroundColor: Colors.white,
-
-                        //     /// Optional, Background of the widget
-                        //     pathBackgroundColor: Colors.red
-
-                        //     /// Optional, the stroke backgroundColor
-                        //     )
+                         child: CircularProgressIndicator(),
                             );
                   }
                 }),
@@ -374,19 +318,20 @@ class _HomePageState extends State<HomePage> {
 
             //  ),
             //          ),
-
+      SizedBox(height: 10,),
             Container(
               height: 280,
+             
               color: Color.fromARGB(255, 1, 11, 66),
               child: Column(
                 children: [
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  Row( mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "    Opening Hours",
+                        "Opening Hours".tr,
                         style: TextStyle(fontSize: 22, color: Colors.white),
                       ),
                     ],
@@ -398,11 +343,11 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Mon - Wed",
+                        "Mon - Wed".tr,
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       Text(
-                        "10:00am - 7:00pm",
+                        "10:00am - 7:00pm".tr,
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       )
                     ],
@@ -414,11 +359,11 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Thursday",
+                        "Thursday".tr,
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       Text(
-                        " 10:00am - 4:00pm",
+                        "10:00am - 4:00pm".tr,
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       )
                     ],
@@ -430,11 +375,11 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Sat - Sun",
+                        "Sat - Sun".tr,
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       Text(
-                        " 10:00am - 7:00pm",
+                        "10:00am - 7:00pm".tr,
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       )
                     ],
@@ -453,7 +398,7 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Appointment",
+                                "Appointment".tr,
                                 style: TextStyle(
                                     fontSize: 18,
                                     color: Color.fromARGB(255, 1, 11, 66),
@@ -464,7 +409,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                 ],
               ),
@@ -549,51 +494,86 @@ class _HomePageState extends State<HomePage> {
                     return ListView.builder(
                         shrinkWrap: true,
                         // scrollDirection: ax,
-                        physics: NeverScrollableScrollPhysics(),
+                       // physics: NeverScrollableScrollPhysics(),
                         itemCount: 1,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 12, right: 12, bottom: 12),
-                              child: Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    // CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.beforeImage![index].toString()),),
-                                    // SizedBox(height: 10,),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                              height: 180,
-                                              child: Image.network(
-                                                '${first + snapshot.data!.beforeImage.toString()}',
-                                                fit: BoxFit.fill,
-                                              )),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                              height: 180,
-                                              child: Image.network(
-                                                '${first + snapshot.data!.afterImage.toString()}',
-                                                fit: BoxFit.fill,
-                                              )),
-                                        ),
-                                      ],
-                                    ),
-
-                                    // SizedBox(
-                                    //   height: 25,
-                                    // ),
-                                  ],
+                            child: Column(
+                             // mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                      Stack(children: [
+                        Container(
+                       
+                          child: Row(children: [
+                        
+                           Expanded(
+                                flex: 1,
+                                child: BeforeAfter(
+                                 
+                                  
+                                  imageCornerRadius: 1,
+                                 
+                                 
+                                  imageWidth:double.infinity,
+                                  beforeImage: Image.network('${first + snapshot.data!.beforeImage.toString()}', fit: BoxFit.fill,),
+                                  afterImage: Image.network('${first + snapshot.data!.afterImage.toString()}',
+                                      fit: BoxFit.fill,),
                                 ),
-                              ),
+                                ),
+                          //   Container(height: 240,
+                          //   width: 195,
+                          // child: Image.asset("images/before.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
+                          //  Container(height: 240,
+                          //  width:195,
+                          // child: Image.asset("images/after.jpg",fit: BoxFit.fill,),
+                          
+                          // ),
+                        
+                          ],),
+                        ),
+
+                        Positioned(
+                          left: 25, bottom: 0, top: 0, right: 35,
+                          child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                            
+                           Text("Before", style: TextStyle(fontSize: 22 , color: Colors.white ,fontWeight: FontWeight.bold,), ),
+                           
+                             Text("After", style: TextStyle(fontSize: 22 , color: Colors.white ,fontWeight: FontWeight.bold,), ),
+                        ],))
+                    ],),
+
+                                // Row(
+                                //   children: [
+                                //     Expanded(
+                                //       child: Container(
+                                //           height: 180,
+                                //           child: Image.network(
+                                //             '${first + snapshot.data!.beforeImage.toString()}',
+                                //             fit: BoxFit.fill,
+                                //           )),
+                                //     ),
+                                //     SizedBox(
+                                //       width: 5,
+                                //     ),
+                                //     Expanded(
+                                //       child: Container(
+                                //           height: 180,
+                                //           child: Image.network(
+                                //             '${first + snapshot.data!.afterImage.toString()}',
+                                //             fit: BoxFit.fill,
+                                //           )),
+                                //     ),
+                                //   ],
+                                // ),
+
+                                // SizedBox(
+                                //   height: 25,
+                                // ),
+                              ],
                             ),
                           );
                         });
@@ -603,7 +583,7 @@ class _HomePageState extends State<HomePage> {
                     );
                   }
                 }),
-
+              SizedBox(height: 16,),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -667,7 +647,7 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 20,
                                               color: Color.fromARGB(
                                                   255, 1, 11, 66),
-                                              fontWeight: FontWeight.bold,
+                                             
                                             ),
                                           ),
                                         ],
@@ -699,7 +679,7 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 20,
                                               color: Color.fromARGB(
                                                   255, 1, 11, 66),
-                                              fontWeight: FontWeight.bold,
+                                            
                                             ),
                                           ),
                                         ],
@@ -731,8 +711,7 @@ class _HomePageState extends State<HomePage> {
                                             style: TextStyle(
                                               fontSize: 20,
                                               color: Color.fromARGB(
-                                                  255, 1, 11, 66),
-                                              fontWeight: FontWeight.bold,
+                                                  255, 1, 11, 66), 
                                             ),
                                           ),
                                         ],
@@ -764,7 +743,7 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 20,
                                               color: Color.fromARGB(
                                                   255, 1, 11, 66),
-                                              fontWeight: FontWeight.bold,
+                                             
                                             ),
                                           ),
                                         ],
@@ -795,7 +774,7 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 20,
                                               color: Color.fromARGB(
                                                   255, 1, 11, 66),
-                                              fontWeight: FontWeight.bold,
+                                             
                                             ),
                                           ),
                                         ],
@@ -966,44 +945,50 @@ class _HomePageState extends State<HomePage> {
                             ],
                           )),
                     ),
-                    Positioned(
-                      right: 97,
-                      bottom: 265,
-                      child: Card(
-                        color: Color.fromARGB(255, 201, 219, 233),
-                        //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 100,
-                          child: Center(
-                              child: Text(
-                            "\$200",
-                            style: TextStyle(
-                              fontSize: 21,
-                              color: Color.fromARGB(255, 1, 11, 66),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 97,
+                      // bottom: 265,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Card(
+                          color: Color.fromARGB(255, 201, 219, 233),
+                          //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            child: Center(
+                                child: Text(
+                              "\$200",
+                              style: TextStyle(
+                                fontSize: 21,
+                                color: Color.fromARGB(255, 1, 11, 66),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 68,
-                      top: 545,
-                      child: Card(
-                        color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 150,
-                          child: Center(
-                              child: Text(
-                            "Appointment",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 68,
+                      // top: 545,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Card(
+                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 150,
+                            child: Center(
+                                child: Text(
+                              "Appointment",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     )
@@ -1083,44 +1068,51 @@ class _HomePageState extends State<HomePage> {
                             ],
                           )),
                     ),
-                    Positioned(
-                      right: 97,
-                      bottom: 265,
-                      child: Card(
-                        color: Color.fromARGB(255, 201, 219, 233),
-                        //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 100,
-                          child: Center(
-                              child: Text(
-                            "\$90",
-                            style: TextStyle(
-                              fontSize: 21,
-                              color: Color.fromARGB(255, 1, 11, 66),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                           
+                      // right: 97,
+                      // bottom: 265,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Card(
+                          color: Color.fromARGB(255, 201, 219, 233),
+                          //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            child: Center(
+                                child: Text(
+                              "\$90",
+                              style: TextStyle(
+                                fontSize: 21,
+                                color: Color.fromARGB(255, 61, 64, 78),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 68,
-                      top: 545,
-                      child: Card(
-                        color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 150,
-                          child: Center(
-                              child: Text(
-                            "Appointment",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 68,
+                      // top: 545,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Card(
+                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 150,
+                            child: Center(
+                                child: Text(
+                              "Appointment",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     )
@@ -1199,44 +1191,50 @@ class _HomePageState extends State<HomePage> {
                             ],
                           )),
                     ),
-                    Positioned(
-                      right: 97,
-                      bottom: 265,
-                      child: Card(
-                        color: Color.fromARGB(255, 201, 219, 233),
-                        //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 100,
-                          child: Center(
-                              child: Text(
-                            "\$200",
-                            style: TextStyle(
-                              fontSize: 21,
-                              color: Color.fromARGB(255, 1, 11, 66),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 97,
+                      // bottom: 265,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Card(
+                          color: Color.fromARGB(255, 201, 219, 233),
+                          //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            child: Center(
+                                child: Text(
+                              "\$200",
+                              style: TextStyle(
+                                fontSize: 21,
+                                color: Color.fromARGB(255, 1, 11, 66),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 68,
-                      top: 545,
-                      child: Card(
-                        color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 150,
-                          child: Center(
-                              child: Text(
-                            "Appointment",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 68,
+                      // top: 545,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Card(
+                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 150,
+                            child: Center(
+                                child: Text(
+                              "Appointment",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     )
@@ -1315,44 +1313,50 @@ class _HomePageState extends State<HomePage> {
                             ],
                           )),
                     ),
-                    Positioned(
-                      right: 97,
-                      bottom: 265,
-                      child: Card(
-                        color: Color.fromARGB(255, 201, 219, 233),
-                        //  elevation: 5,
-                        child: Container(
-                          height: 60,
-                          width: 100,
-                          child: Center(
-                              child: Text(
-                            "\$40",
-                            style: TextStyle(
-                              fontSize: 21,
-                              color: Color.fromARGB(255, 1, 11, 66),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 97,
+                      // bottom: 265,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Card(
+                          color: Color.fromARGB(255, 201, 219, 233),
+                          //  elevation: 5,
+                          child: Container(
+                            height: 60,
+                            width: 100,
+                            child: Center(
+                                child: Text(
+                              "\$40",
+                              style: TextStyle(
+                                fontSize: 21,
+                                color: Color.fromARGB(255, 1, 11, 66),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 68,
-                      top: 545,
-                      child: Card(
-                        color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 150,
-                          child: Center(
-                              child: Text(
-                            "Appointment",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 68,
+                      // top: 545,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Card(
+                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 150,
+                            child: Center(
+                                child: Text(
+                              "Appointment",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     )
@@ -1431,44 +1435,50 @@ class _HomePageState extends State<HomePage> {
                             ],
                           )),
                     ),
-                    Positioned(
-                      right: 97,
-                      bottom: 265,
-                      child: Card(
-                        color: Color.fromARGB(255, 201, 219, 233),
-                        //  elevation: 5,
-                        child: Container(
-                          height: 50,
-                          width: 100,
-                          child: Center(
-                              child: Text(
-                            "\$100",
-                            style: TextStyle(
-                              fontSize: 21,
-                              color: Color.fromARGB(255, 1, 11, 66),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 97,
+                      // bottom: 265,
+                      child: Align(
+                        alignment:Alignment.center,
+                        child: Card(
+                          color: Color.fromARGB(255, 201, 219, 233),
+                          //  elevation: 5,
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            child: Center(
+                                child: Text(
+                              "\$100",
+                              style: TextStyle(
+                                fontSize: 21,
+                                color: Color.fromARGB(255, 1, 11, 66),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 68,
-                      top: 545,
-                      child: Card(
-                        color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                        child: Container(
-                          height: 60,
-                          width: 150,
-                          child: Center(
-                              child: Text(
-                            "Appointment",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                    Positioned.fill(
+                      // right: 68,
+                      // top: 545,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Card(
+                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                          child: Container(
+                            height: 60,
+                            width: 150,
+                            child: Center(
+                                child: Text(
+                              "Appointment",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     )
@@ -1845,4 +1855,5 @@ class _HomePageState extends State<HomePage> {
       //  ),
     );
   }
+  
 }

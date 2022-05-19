@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hiba_dentist/login_user.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hiba_dentist/new_login.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class newdrawerpage extends StatelessWidget {
   const newdrawerpage({ Key? key }) : super(key: key);
@@ -49,6 +54,48 @@ if (await canLaunch(url)) {
   throw 'Could not launch $url';
 }
   }
+  final List locale = [
+    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
+    {'name': 'عربى', 'locale': Locale('ar', 'SA')},
+  ];
+
+  updateLanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
+  buildLanguageDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            title: Text('Choose Your Language'),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        child: Text(locale[index]['name']),
+                        onTap: () {
+                          print(locale[index]['name']);
+                          updateLanguage(locale[index]['locale']);
+                        },
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      color: Colors.blue,
+                    );
+                  },
+                  itemCount: locale.length),
+            ),
+          );
+        });
+  }
+
 
 
   @override
@@ -76,20 +123,26 @@ if (await canLaunch(url)) {
                     Divider(thickness: 1,color: Colors.grey),
                  GestureDetector(
                    onTap: (){
-                         _launchURLlogin();
-                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>Login(),));
+                     
+                      //   _launchURLlogin();
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>  Login(),));
                    },
                    child: ListTile(
                        leading: Icon(Icons.login, color: Colors.black, size: 27,),
                        tileColor: Colors.white,
-                      title: Text('Login', style: TextStyle(color: Colors.black, fontSize: 18),),
+                      title: Text('Login'.tr, style: TextStyle(color: Colors.black, fontSize: 18),),
                        //trailing: Icon(Icons.arrow_drop_down_rounded),
                    
                     ),
                  ),
                      Divider(thickness: 1,color: Colors.grey),
+                     ElevatedButton(
+                onPressed: () {
+                  buildLanguageDialog(context);
+                },
+                child: Text('changelang'.tr)),
                         SizedBox(height: 10,),
-                      Text('Follow Us', style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
+                      Text('message'.tr, style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
                         SizedBox(height: 10,),
                     Divider(thickness: 1,color: Colors.grey),
                  GestureDetector(
@@ -110,7 +163,7 @@ if (await canLaunch(url)) {
                             ),
                        //Icon(Icons.facebook, color: Colors.black, size: 27,),
                        tileColor: Colors.white,
-                      title: Text('Facebook', style: TextStyle(color: Colors.black, fontSize: 18),),
+                      title: Text('Facebook'.tr, style: TextStyle(color: Colors.black, fontSize: 18),),
                        //trailing: Icon(Icons.arrow_drop_down_rounded),
                    
                     ),
@@ -133,7 +186,7 @@ if (await canLaunch(url)) {
                              
                             ),
                        tileColor: Colors.white,
-                      title: Text('Instagram', style: TextStyle(color: Colors.black, fontSize: 18),),
+                      title: Text('Instagram'.tr, style: TextStyle(color: Colors.black, fontSize: 18),),
                        //trailing: Icon(Icons.arrow_drop_down_rounded),
                    
                     ),

@@ -45,6 +45,17 @@ dependencies:
   google_maps_flutter: ^2.1.5
   flutter_offline: ^2.1.0
   flutter_spinkit: ^5.1.0
+  before_after: ^2.1.0
+  webview_flutter: ^3.0.4
+  carousel_indicator: ^1.0.6
+  carousel_pro: ^1.0.0
+  syncfusion_flutter_datepicker: ^20.1.52
+  intl: ^0.17.0
+  flutter_picker: ^2.0.3
+  flutter_material_pickers: ^3.1.4+1
+  direct_select: "^1.0.3"
+  get: ^4.0.1
+ 
 
 
 dev_dependencies:
