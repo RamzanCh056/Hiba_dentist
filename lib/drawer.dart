@@ -142,7 +142,12 @@ if (await canLaunch(url)) {
                 },
                 child: Text('changelang'.tr)),
                         SizedBox(height: 10,),
-                      Text('message'.tr, style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
+
+                        SizedBox(height: 70,),
+                     Column(
+                       mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                       Text('message'.tr, style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
                         SizedBox(height: 10,),
                     Divider(thickness: 1,color: Colors.grey),
                  GestureDetector(
@@ -192,6 +197,10 @@ if (await canLaunch(url)) {
                     ),
                  ),
                      Divider(thickness: 1,color: Colors.grey),
+
+
+                    ],
+                     )
             ],),
           ),
         ),

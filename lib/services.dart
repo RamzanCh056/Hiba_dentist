@@ -12,7 +12,9 @@ import 'package:hiba_dentist/model/before_after.dart';
 import 'package:hiba_dentist/model/feedback_model.dart';
 import 'package:hiba_dentist/model/services.dart';
 import 'package:hiba_dentist/model/slider_model.dart';
+import 'package:hiba_dentist/service/dental_bridge.dart';
 import 'package:hiba_dentist/service/root-treatment.dart';
+import 'package:hiba_dentist/service/teth_whitnes.dart';
 import 'package:http/http.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -308,14 +310,17 @@ class _ServicesState extends State<Services> {
                                               
                                              SizedBox(height: 30,),
                                         
-                                        Container(
-                                          width: double.infinity,
-                                         height:180,
-                                         child: Image.network(
-                                                                                    '${first + snapshot.data![2].serviceImage.toString()}',
-                                                                                    fit: BoxFit.fill,
-                                                                           )
-                                                                           ),
+                                        GestureDetector(
+                                          onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>  dental_bridge(),));},
+                                          child: Container(
+                                            width: double.infinity,
+                                           height:180,
+                                           child: Image.network(
+                                                                                      '${first + snapshot.data![2].serviceImage.toString()}',
+                                                                                      fit: BoxFit.fill,
+                                                                             )
+                                                                             ),
+                                        ),
                                                                               SizedBox(
                        height: 60,
                        child: Container(
@@ -327,14 +332,17 @@ class _ServicesState extends State<Services> {
                         ],),),
                      ),
                                   SizedBox(height: 30,),     
-                           Container(
-                             width: double.infinity,
-                            height:180,
-                            child: Image.network(
-                                                                       '${first + snapshot.data![3].serviceImage.toString()}',
-                                                                       fit: BoxFit.fill,
-                                                              )
-                                                              ),
+                           GestureDetector(
+                             onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>  tethwhitenes (),));},
+                             child: Container(
+                               width: double.infinity,
+                              height:180,
+                              child: Image.network(
+                                                                         '${first + snapshot.data![3].serviceImage.toString()}',
+                                                                         fit: BoxFit.fill,
+                                                                )
+                                                                ),
+                           ),
                                              SizedBox(
                        height: 60,
                        child: Container(

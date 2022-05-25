@@ -4,12 +4,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:hiba_dentist/appointment.dart';
 import 'package:hiba_dentist/drawer.dart';
 import 'package:hiba_dentist/model/before_after.dart';
 import 'package:hiba_dentist/model/feedback_model.dart';
 import 'package:hiba_dentist/model/services.dart';
 import 'package:hiba_dentist/model/slider_model.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:hiba_dentist/service/costmetic_dencity.dart';
+import 'package:hiba_dentist/service/dental_bridge.dart';
+import 'package:hiba_dentist/service/dental_implement.dart';
+import 'package:hiba_dentist/service/root-treatment.dart';
+import 'package:hiba_dentist/service/teth_whitnes.dart';
 import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
@@ -227,24 +233,7 @@ class _HomePageState extends State<HomePage> {
 )
 
                 ),
-                //  LoadingIndicator(
-
-                //    indicatorType: Indicator.lineSpinFadeLoader,
-
-                //    /// Required, The loading type of the widget
-                //    colors: const [Colors.blue],
-
-                //    /// Optional, The color collections
-                //    strokeWidth: 7,
-
-                //    /// Optional, The stroke of the line, only applicable to widget which contains line
-                //    backgroundColor: Colors.white,
-
-                //    /// Optional, Background of the widget
-                //    pathBackgroundColor: Colors.red
-
-                //    /// Optional, the stroke backgroundColor
-                //    ),
+                
               ): ListView(
           children: [
             // CarouselSlider(
@@ -389,23 +378,26 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 28, right: 28),
-                    child: SizedBox(
-                      height: 50,
-                      child: Card(
-                          elevation: 3,
-                          color: Colors.white,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Appointment".tr,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Color.fromARGB(255, 1, 11, 66),
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )),
+                    child: GestureDetector(
+                      onTap: (){Get.to( appointment());},
+                      child: SizedBox(
+                        height: 50,
+                        child: Card(
+                            elevation: 3,
+                            color: Colors.white,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Appointment".tr,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Color.fromARGB(255, 1, 11, 66),
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            )),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -625,13 +617,16 @@ class _HomePageState extends State<HomePage> {
                                   // CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.beforeImage![index].toString()),),
                                   // SizedBox(height: 10,),
 
-                                  Container(
-                                      width: double.infinity,
-                                      height: 180,
-                                      child: Image.network(
-                                        '${first + snapshot.data![0].serviceImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
+                                  GestureDetector(
+                                   onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>   Costemetic_density(),));},
+                                    child: Container(
+                                        width: double.infinity,
+                                        height: 180,
+                                        child: Image.network(
+                                          '${first + snapshot.data![0].serviceImage.toString()}',
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
 
                                   SizedBox(
                                     height: 60,
@@ -658,13 +653,16 @@ class _HomePageState extends State<HomePage> {
                                     height: 20,
                                   ),
 
-                                  Container(
-                                      width: double.infinity,
-                                      height: 180,
-                                      child: Image.network(
-                                        '${first + snapshot.data![1].serviceImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
+                                  GestureDetector(
+                                    onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>   Dental(),));},
+                                    child: Container(
+                                        width: double.infinity,
+                                        height: 180,
+                                        child: Image.network(
+                                          '${first + snapshot.data![1].serviceImage.toString()}',
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
                                   SizedBox(
                                     height: 60,
                                     child: Container(
@@ -691,13 +689,16 @@ class _HomePageState extends State<HomePage> {
                                     height: 20,
                                   ),
 
-                                  Container(
-                                      width: double.infinity,
-                                      height: 180,
-                                      child: Image.network(
-                                        '${first + snapshot.data![2].serviceImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
+                                  GestureDetector(
+                                    onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>  dental_bridge (),));},
+                                    child: Container(
+                                        width: double.infinity,
+                                        height: 180,
+                                        child: Image.network(
+                                          '${first + snapshot.data![2].serviceImage.toString()}',
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
                                   SizedBox(
                                     height: 60,
                                     child: Container(
@@ -722,13 +723,16 @@ class _HomePageState extends State<HomePage> {
                                     height: 20,
                                   ),
 
-                                  Container(
-                                      width: double.infinity,
-                                      height: 180,
-                                      child: Image.network(
-                                        '${first + snapshot.data![3].serviceImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
+                                  GestureDetector(
+                                    onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>   tethwhitenes(),));},
+                                    child: Container(
+                                        width: double.infinity,
+                                        height: 180,
+                                        child: Image.network(
+                                          '${first + snapshot.data![3].serviceImage.toString()}',
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
                                   SizedBox(
                                     height: 60,
                                     child: Container(
@@ -753,13 +757,16 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  Container(
-                                      width: double.infinity,
-                                      height: 180,
-                                      child: Image.network(
-                                        '${first + snapshot.data![4].serviceImage.toString()}',
-                                        fit: BoxFit.fill,
-                                      )),
+                                  GestureDetector(
+                                    onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>   root(),));},
+                                    child: Container(
+                                        width: double.infinity,
+                                        height: 180,
+                                        child: Image.network(
+                                          '${first + snapshot.data![4].serviceImage.toString()}',
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
                                   SizedBox(
                                     height: 60,
                                     child: Container(

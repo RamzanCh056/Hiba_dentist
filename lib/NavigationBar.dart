@@ -11,7 +11,8 @@ import 'package:hiba_dentist/services.dart';
 import 'package:get/get.dart';
 
 const TextStyle _textStyle = TextStyle(
-  fontSize: 40,
+  fontSize: 38,
+  
   fontWeight: FontWeight.bold,
   letterSpacing: 2,
   fontStyle: FontStyle.italic,
@@ -51,7 +52,18 @@ class _MaterialYouState extends State<MaterialYou> {
         child: pages[_currentIndex],
         
       ),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+         // indicatorColor: Colors.blue.shade200,
+        //  backgroundColor: Colors.blue.shade500,
+          labelTextStyle: MaterialStateProperty.all(
+            TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+          ),
+          
+        ),
+      
+      
+   child:   NavigationBar(
         
          
         selectedIndex: _currentIndex,
@@ -71,7 +83,8 @@ class _MaterialYouState extends State<MaterialYou> {
           NavigationDestination(
             selectedIcon: Icon(Icons.app_registration),
             icon: Icon(Icons.app_registration_outlined),
-            label: 'Appointment',
+            label: 'Appointment', 
+            
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.real_estate_agent),
@@ -90,8 +103,9 @@ class _MaterialYouState extends State<MaterialYou> {
           ),
            
         ],
+        
       
       ),
-    );
+    ));
   }
 }

@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:hiba_dentist/Home.dart';
+import 'package:hiba_dentist/NavigationBar.dart';
 import 'package:hiba_dentist/model/appointment_date.dart';
 import 'package:hiba_dentist/model/availableSlots.dart';
 import 'package:hiba_dentist/model/slots.dart';
@@ -95,6 +96,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var age = 25;
   List<appointment_date> photoList = [];
+  final _formKey = GlobalKey<FormState>();
   List<slots> slotsList = [];
   List<availableSlots> availableSlotsList = [];
   List<String> availableSlotsListString = [];
@@ -335,9 +337,14 @@ else {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
+            
             children: [
+              Row( mainAxisAlignment: MainAxisAlignment.start,
+             children: [
+              IconButton(onPressed: (){  Get.to(MaterialYou());}, icon: Icon(Icons.arrow_back_ios_new, color: Colors.white,)),
+           ],),
               SizedBox(
-                height: 40,
+                height: 30,
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -349,188 +356,41 @@ else {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Container(
-                  
-                  decoration: BoxDecoration(color: HexColor("#06a3da"),),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Center(
-                          child: Text(
-                            'Make Appointment',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
+              Form(
+                  key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(
+                    
+                    decoration: BoxDecoration(color: HexColor("#06a3da"),),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SizedBox(
+                            height: 10,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 10.0),
-                            child: TextFormField(
-                              //  autocorrect: true,
-
-                              decoration: InputDecoration(
-                                hintText: 'First Name',
-                                prefixIcon: Icon(Icons.person),
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(),
-                                errorStyle: TextStyle(
-                                    color: Colors.redAccent, fontSize: 15),
-                                filled: true,
-                                fillColor: HexColor("#EEF9FF"),
-                                enabledBorder: OutlineInputBorder(
-                                  //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                              ),
-                               controller: firstnameController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please Enter Name';
-                                }
-                                return null;
-                              },
+                          Center(
+                            child: Text(
+                              'Make Appointment',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 0, bottom: 8),
-                          child: Container(
-                            child: TextFormField(
-                              //  autocorrect: true,
-
-                              decoration: InputDecoration(
-                                hintText: 'Last Name',
-                                prefixIcon: Icon(Icons.person),
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(),
-                                errorStyle: TextStyle(
-                                    color: Colors.redAccent, fontSize: 15),
-                                filled: true,
-                                fillColor: HexColor("#EEF9FF"),
-                                enabledBorder: OutlineInputBorder(
-                                  //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                              ),
-                               controller: lastnameController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please Enter Name';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 8, bottom: 8),
-                          child: Container(
-                            child: TextFormField(
-                              //  autocorrect: true,
-
-                              decoration: InputDecoration(
-                                hintText: 'Your Mobile',
-                                prefixIcon: Icon(Icons.person),
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(),
-                                errorStyle: TextStyle(
-                                    color: Colors.redAccent, fontSize: 15),
-                                filled: true,
-                                fillColor: HexColor("#EEF9FF"),
-                                enabledBorder: OutlineInputBorder(
-                                  //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                              ),
-                               controller: mobileController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please Enter Name';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 8, bottom: 8),
-                          child: Container(
-                            child: TextFormField(
-                              //  autocorrect: true,
-
-                              decoration: InputDecoration(
-                                hintText: 'Your Email',
-                                prefixIcon: Icon(Icons.person),
-                                hintStyle: TextStyle(color: Colors.grey),
-                                border: OutlineInputBorder(),
-                                errorStyle: TextStyle(
-                                    color: Colors.redAccent, fontSize: 15),
-                                filled: true,
-                                fillColor: HexColor("#EEF9FF"),
-                                enabledBorder: OutlineInputBorder(
-                                  //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#EEF9FF"), width: 2),
-                                ),
-                              ),
-                               controller: emailController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please Enter Name';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 8, bottom: 8),
-                          child: Container(
-                            child: TextFormField(
-                              focusNode: AlwaysDisabledFocusNode(),
-                             controller: appointmentController,
-                              decoration: InputDecoration(
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              margin: EdgeInsets.symmetric(vertical: 10.0),
+                              child: TextFormField(
+                                //  autocorrect: true,
+              
+                                decoration: InputDecoration(
+                                  hintText: 'First Name',
+                                  prefixIcon: Icon(Icons.person),
+                                  hintStyle: TextStyle(color: Colors.grey),
                                   border: OutlineInputBorder(),
                                   errorStyle: TextStyle(
                                       color: Colors.redAccent, fontSize: 15),
@@ -547,174 +407,385 @@ else {
                                     borderSide: BorderSide(
                                         color: HexColor("#EEF9FF"), width: 2),
                                   ),
-                                  hintText: 'Appointment'),
-
-                              onTap: () => _selectDate(),
-                              //  autocorrect: true,
+                                ),
+                                 controller: firstnameController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please Enter Name';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, top: 0, bottom: 8),
+                            child: Container(
+                              child: TextFormField(
+                                //  autocorrect: true,
+              
+                                decoration: InputDecoration(
+                                  hintText: 'Last Name',
+                                  prefixIcon: Icon(Icons.person_outline_sharp),
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: OutlineInputBorder(),
+                                  errorStyle: TextStyle(
+                                      color: Colors.redAccent, fontSize: 15),
+                                  filled: true,
+                                  fillColor: HexColor("#EEF9FF"),
+                                  enabledBorder: OutlineInputBorder(
+                                    //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    borderSide: BorderSide(
+                                        color: HexColor("#EEF9FF"), width: 2),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    borderSide: BorderSide(
+                                        color: HexColor("#EEF9FF"), width: 2),
+                                  ),
+                                ),
+                                 controller: lastnameController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please Enter Name';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, top: 8, bottom: 8),
+                            child: Container(
+                              child: TextFormField(
+                                //  autocorrect: true,
+               keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  hintText: 'Your Mobile',
+                                  
+                                  prefixIcon: Icon(Icons.mobile_friendly),
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: OutlineInputBorder(),
+                                  errorStyle: TextStyle(
+                                      color: Colors.redAccent, fontSize: 15),
+                                  filled: true,
+                                  fillColor: HexColor("#EEF9FF"),
+                                  enabledBorder: OutlineInputBorder(
+                                    //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    borderSide: BorderSide(
+                                        color: HexColor("#EEF9FF"), width: 2),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    borderSide: BorderSide(
+                                        color: HexColor("#EEF9FF"), width: 2),
+                                  ),
+                                ),
+                                 controller: mobileController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please Enter Mobile number';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, top: 8, bottom: 8),
+                            child: Container(
+                              child: TextFormField(
+                                //  autocorrect: true,
+              
+                                decoration: InputDecoration(
+                                  hintText: 'Your Email',
+                                  prefixIcon: Icon(Icons.email),
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: OutlineInputBorder(),
+                                  errorStyle: TextStyle(
+                                      color: Colors.redAccent, fontSize: 15),
+                                  filled: true,
+                                  fillColor: HexColor("#EEF9FF"),
+                                  enabledBorder: OutlineInputBorder(
+                                    //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    borderSide: BorderSide(
+                                        color: HexColor("#EEF9FF"), width: 2),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    borderSide: BorderSide(
+                                        color: HexColor("#EEF9FF"), width: 2),
+                                  ),
+                                ),
+                                 controller: emailController,
+                                validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter Email';
+                          } else if (!value.contains('@')) {
+                            return 'Please Enter Valid Email';
+                          }
+                          return null;
+                        },
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, top: 8, bottom: 8),
+                            child: Container(
+                              child: TextFormField(
+                              
+                                focusNode: AlwaysDisabledFocusNode(),
+                               controller: appointmentController,
+                                decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.date_range),
+                                    border: OutlineInputBorder(),
+                                    errorStyle: TextStyle(
+                                        color: Colors.redAccent, fontSize: 15),
+                                    filled: true,
+                                    fillColor: HexColor("#EEF9FF"),
+                                    enabledBorder: OutlineInputBorder(
+                                      //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      borderSide: BorderSide(
+                                          color: HexColor("#EEF9FF"), width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10.0)),
+                                      borderSide: BorderSide(
+                                          color: HexColor("#EEF9FF"), width: 2),
+                                    ),
+                                    hintText: 'Appointment Date'),
+              
+                                onTap: () => _selectDate(),
+                                //  autocorrect: true,
+              
+                                
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please Enter date';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              //  Card(
+                              //   margin: const EdgeInsets.fromLTRB(40, 150, 40, 150),
+                              //   child: SfDateRangePicker(
+                              //     view: DateRangePickerView.month,
+                              //     //selectionMode: DateRangePickerSelectionMode.range,
+                              //     minDate: _minDate,
+                              //     maxDate: _maxDate,
+                              //     onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                              //       final dynamic value = args.value;
+                              //     },
+                              //     onViewChanged: (DateRangePickerViewChangedArgs args) {
+                              //       final PickerDateRange visibleDates = args.visibleDateRange;
+                              //       final DateRangePickerView view = args.view;
+                              //     },
+                              //   ),
+                              // ),
+                            ),
+                          ),
+                          /////////////
+                          ///
+                            Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, top: 8, bottom: 8),
+                            child: StatefulBuilder(builder: (context, setState) {
+                              return Container(
+                              child: TextFormField(
+                                focusNode: AlwaysDisabledFocusNode(),
+                              //  controller: appointmentController,
+                                decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.timer),
+                                    border: OutlineInputBorder(),
+                                    errorStyle: TextStyle(
+                                        color: Colors.redAccent, fontSize: 15),
+                                    filled: true,
+                                    fillColor: HexColor("#EEF9FF"),
+                                    enabledBorder: OutlineInputBorder(
+                                      //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      borderSide: BorderSide(
+                                          color: HexColor("#EEF9FF"), width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10.0)),
+                                      borderSide: BorderSide(
+                                          color: HexColor("#EEF9FF"), width: 2),
+                                    ),
+                                      hintText: ' $appointmentslot' ),
+                                        
+                                onTap: () async {   showPickerArray(context);
+                                //  setState(() async{
+                                //    await
+                                     
+                                //     });
+                                
+                                },
+                                //  autocorrect: true,
+                                        
+                                
+                               
+                              ),
+                             
+                            );
+                            },)
+                            
+                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(
+                          //       left: 8, right: 8, top: 8, bottom: 8),
+                          //   child: Container(
+                          //     decoration: BoxDecoration(
+                          //         color: Color.fromARGB(255, 253, 253, 253),
+                          //         borderRadius: BorderRadius.circular(4)),
+                          //     child: ListTile(
+                          //       title:Text('Appointment Slots'),
+                          //       onTap: () {
+                          //         showPickerArray(context);
+                          //       },
+                          //     ),
+              
+                          //     // child: DirectSelect(
+                          //     //     itemExtent: 35.0,
+                          //     //     selectedIndex: selectedIndex1,
+                          //     //     backgroundColor: Colors.red,
+                          //     //     child: MySelectionItem(
+                          //     //       isForList: false,
+                          //     //       title: "abc",
+                          //     //     ),
+                          //     //     onSelectedItemChanged: (index) {
+                          //     //       setState(() {
+                          //     //         selectedIndex1 = index;
+                          //     //       });
+                          //     //     },
+                          //     //     items: _buildItems1()),
+              
+                          //     //   ListTile(
+                          //     // title: Text('Appointment Slots'),
+                          //     // onTap: () {
+                          //     //   print("${availableSlotsList} newlist");
+              
+                          //     // print("myslots $slotsList");
+                          //     // showMaterialScrollPicker<availableSlots>(
+                          //     //   context: context,
+                          //     //   title: 'Pick available slot',
+                          //     //   items: availableSlotsList,
+                          //     //   selectedItem: selectedSlot!,
+                          //     //   onChanged: (value) =>
+                          //     //       setState(() => selectedSlot = value),
+                          //     // );
+              
+                          //     // showPickerDate(context);
+                          //     //   },
+                          //     // ),
+                          //     // TextFormField(
+                          //     //   //  autocorrect: true,
+              
+                          //     //   decoration: InputDecoration(
+                          //     //     hintText: 'Appointment Slot',
+                          //     //     prefixIcon: Icon(Icons.person),
+                          //     //     hintStyle: TextStyle(color: Colors.grey),
+                          //     //     border: OutlineInputBorder(),
+                          //     //     errorStyle: TextStyle(
+                          //     //         color: Colors.redAccent, fontSize: 15),
+                          //     //     filled: true,
+                          //     //     fillColor: HexColor("#EEF9FF"),
+                          //     //     enabledBorder: OutlineInputBorder(
+                          //     //       //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          //     //       borderSide: BorderSide(
+                          //     //           color: HexColor("#EEF9FF"), width: 2),
+                          //     //     ),
+                          //     //     focusedBorder: OutlineInputBorder(
+                          //     //       borderRadius:
+                          //     //           BorderRadius.all(Radius.circular(10.0)),
+                          //     //       borderSide: BorderSide(
+                          //     //           color: HexColor("#EEF9FF"), width: 2),
+                          //     //     ),
+                          //     //   ),
+                          //     //   // controller: nameController,
+                          //     //   validator: (value) {
+                          //     //     if (value == null || value.isEmpty) {
+                          //     //       return 'Please Enter Name';
+                          //     //     }
+                          //     //     return null;
+                          //     //   },
+                          //     // ),
+                          //   ),
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 8, right: 8, top: 8, bottom: 8),
+                            child: MaterialButton(
+                              height: 60,
+                              color: Color.fromARGB(255, 1, 11, 66),
+                              onPressed: () {
+                                 if (_formKey.currentState.validate()) {
+                                setState(() {
+                               email = emailController.text;
+                               firstname=firstnameController.text;
+                               lastname= lastnameController.text;
+                               mobile= mobileController.text;
+                           
+                        
+                                });
+                               
+                                  
 
                               
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please Enter Name';
+                  
+                             
+                                    servicesfunction();
+                                sendAppointment(firstnameController.text, lastnameController.text, mobileController.text, emailController.text, appointmentController.text.toString() ,appointmentslot.toString());
+                              }
+                               
+                               
+                              },
+                              child: Text(
+                                'Make Appointment',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          FutureBuilder(
+                              future: servicesfunction(),
+                              builder: (context,
+                                  AsyncSnapshot<List<appointment_date>>
+                                      snapshot) {
+                                if (snapshot.data != null) {
+                                  var first = 'http://drhibasaadeh.com';
+                                  return Center();
+                                } else {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
                                 }
-                                return null;
-                              },
-                            ),
-                            //  Card(
-                            //   margin: const EdgeInsets.fromLTRB(40, 150, 40, 150),
-                            //   child: SfDateRangePicker(
-                            //     view: DateRangePickerView.month,
-                            //     //selectionMode: DateRangePickerSelectionMode.range,
-                            //     minDate: _minDate,
-                            //     maxDate: _maxDate,
-                            //     onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
-                            //       final dynamic value = args.value;
-                            //     },
-                            //     onViewChanged: (DateRangePickerViewChangedArgs args) {
-                            //       final PickerDateRange visibleDates = args.visibleDateRange;
-                            //       final DateRangePickerView view = args.view;
-                            //     },
-                            //   ),
-                            // ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 8, bottom: 8),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 253, 253, 253),
-                                borderRadius: BorderRadius.circular(4)),
-                            child: ListTile(
-                              title: Text('Appointment Slots'),
-                              onTap: () {
-                                showPickerArray(context);
-                              },
-                            ),
-
-                            // child: DirectSelect(
-                            //     itemExtent: 35.0,
-                            //     selectedIndex: selectedIndex1,
-                            //     backgroundColor: Colors.red,
-                            //     child: MySelectionItem(
-                            //       isForList: false,
-                            //       title: "abc",
-                            //     ),
-                            //     onSelectedItemChanged: (index) {
-                            //       setState(() {
-                            //         selectedIndex1 = index;
-                            //       });
-                            //     },
-                            //     items: _buildItems1()),
-
-                            //   ListTile(
-                            // title: Text('Appointment Slots'),
-                            // onTap: () {
-                            //   print("${availableSlotsList} newlist");
-
-                            // print("myslots $slotsList");
-                            // showMaterialScrollPicker<availableSlots>(
-                            //   context: context,
-                            //   title: 'Pick available slot',
-                            //   items: availableSlotsList,
-                            //   selectedItem: selectedSlot!,
-                            //   onChanged: (value) =>
-                            //       setState(() => selectedSlot = value),
-                            // );
-
-                            // showPickerDate(context);
-                            //   },
-                            // ),
-                            // TextFormField(
-                            //   //  autocorrect: true,
-
-                            //   decoration: InputDecoration(
-                            //     hintText: 'Appointment Slot',
-                            //     prefixIcon: Icon(Icons.person),
-                            //     hintStyle: TextStyle(color: Colors.grey),
-                            //     border: OutlineInputBorder(),
-                            //     errorStyle: TextStyle(
-                            //         color: Colors.redAccent, fontSize: 15),
-                            //     filled: true,
-                            //     fillColor: HexColor("#EEF9FF"),
-                            //     enabledBorder: OutlineInputBorder(
-                            //       //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                            //       borderSide: BorderSide(
-                            //           color: HexColor("#EEF9FF"), width: 2),
-                            //     ),
-                            //     focusedBorder: OutlineInputBorder(
-                            //       borderRadius:
-                            //           BorderRadius.all(Radius.circular(10.0)),
-                            //       borderSide: BorderSide(
-                            //           color: HexColor("#EEF9FF"), width: 2),
-                            //     ),
-                            //   ),
-                            //   // controller: nameController,
-                            //   validator: (value) {
-                            //     if (value == null || value.isEmpty) {
-                            //       return 'Please Enter Name';
-                            //     }
-                            //     return null;
-                            //   },
-                            // ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 8, bottom: 8),
-                          child: MaterialButton(
-                            height: 60,
-                            color: Color.fromARGB(255, 1, 11, 66),
-                            onPressed: () {
-                              servicesfunction();
-                              sendAppointment(firstnameController.text, lastnameController.text, mobileController.text, emailController.text, appointmentController.text.toString() ,appointmentslot.toString());
-                              // print( firstnameController);
-                              //   print(  lastnameController);
-                              //      print(  mobileController);
-                              //           print(  emailController);
-                              //             print(appointmentController);
-                              //               print('Slot = $appointmentslot');
-                                            //  print(appointmentslot);
-                             // appointment(firstnameController.text, lastnameController.text, mobileController.text, emailController.text, appointmentController.text.toString() ,appointmentslot.toString());
-                              //print("listtt===$photoList");
-                            },
-                            child: Text(
-                              'Make Appointment',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        FutureBuilder(
-                            future: servicesfunction(),
-                            builder: (context,
-                                AsyncSnapshot<List<appointment_date>>
-                                    snapshot) {
-                              if (snapshot.data != null) {
-                                var first = 'http://drhibasaadeh.com';
-                                return Center();
-                              } else {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                            }),
-                        FutureBuilder(
-                            future: slot(),
-                            builder:
-                                (context, AsyncSnapshot<List<slots>> snapshot) {
-                              if (snapshot.data != null) {
-                                var first = 'http://drhibasaadeh.com';
-                                return Center();
-                              } else {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                            }),
-                      ],
+                              }),
+                          FutureBuilder(
+                              future: slot(),
+                              builder:
+                                  (context, AsyncSnapshot<List<slots>> snapshot) {
+                                if (snapshot.data != null) {
+                                  var first = 'http://drhibasaadeh.com';
+                                  return Center();
+                                } else {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              }),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -810,19 +881,28 @@ else {
     availableSlotsList.forEach((element) {
       availableSlotsListString.add(element.name);
     });
+    setState(() {
+      
+    });
     new Picker(
         adapter: PickerDataAdapter<String>(
             pickerdata: availableSlotsListString.toSet().toList(),
             isArray: false),
         hideHeader: true,
         title: new Text("Please Select"),
+        
         onConfirm: (Picker picker, List value) {
-          print('dfgtrg'+value.toString());
+        setState(() {
+            print('dfgtrg'+value.toString());
           print(picker.getSelectedValues());
           print("picker"+picker.toString());
            appointmentslot= picker.getSelectedValues().toString();
            print('your appointment slot'+appointmentslot);
+        });
         }).showDialog(context);
+        setState(() {
+          
+        });
   }
 
   Future<List<slots>> slot() async {

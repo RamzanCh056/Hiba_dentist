@@ -1,5 +1,16 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:hiba_dentist/NavigationBar.dart';
+import 'package:hiba_dentist/drawer.dart';
+import 'package:hiba_dentist/profile.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart' ;
 
 
 class LoginUser extends StatelessWidget {
@@ -22,9 +33,69 @@ class _LoginState extends State<Login> {
 
   var email = "";
   var password = "";
+ 
+  
+    TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
- 
+    loginfun(String email_id, String password) async {
+     var headers = {
+  'Authorization': 'Bearer 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b',
+  'Content-Type': 'application/json',
+  'Cookie': 'csrftoken=FqNJnPS7YzpZtOFcTTsmQNPDWYQBKL6gd9rlq50wrDLV1sHSagbTSsZMQitQby07; sessionid=w7p7b0gz4rjq7z5tud3x7v7gqvvbwy13'
+};
+var request = http.Request('POST', Uri.parse('http://drhibasaadeh.com/api/patients/login/'));
+request.body = json.encode({
+  "email_id": email_id,
+  "password": password
+});
+request.headers.addAll(headers);
+
+http.StreamedResponse response = await request.send();
+
+if (response.statusCode == 200) {
+  print(await response.stream.bytesToString());
+  print("api is hit on login");
+    Get.snackbar(
+              "",
+               "", 
+               snackPosition: SnackPosition.BOTTOM,
+               backgroundColor: Colors.black,
+               borderRadius: 20,
+               margin: EdgeInsets.all(15),
+               colorText: Colors.green,
+               messageText: Text("Login successfully", style: TextStyle(color: Colors.white),),
+               duration: Duration(seconds: 4),
+               isDismissible: true,
+              
+               forwardAnimationCurve: Curves.easeOutBack,
+                 
+               );
+             
+               Get.to( Profile());
+}
+else {
+  print(response.reasonPhrase);
+  print("api not hit on login");
+   Get.snackbar(
+              "Wrong",
+               "", 
+               snackPosition: SnackPosition.BOTTOM,
+               backgroundColor: Colors.black,
+               borderRadius: 20,
+               margin: EdgeInsets.all(15),
+               colorText: Colors.red,
+               messageText: Text("Wrong credential", style: TextStyle(color: Colors.white),),
+               duration: Duration(seconds: 4),
+               isDismissible: true,
+              
+               forwardAnimationCurve: Curves.easeOutBack,
+                 
+               );
+}
+
+   }
 
 
   
@@ -35,7 +106,12 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(children: [
+         
              SizedBox(height: 40,),
+              Row( mainAxisAlignment: MainAxisAlignment.start,
+             children: [
+              IconButton(onPressed: (){   Get.to(MaterialYou());}, icon: Icon(Icons.arrow_back_ios_new)),
+           ],),
            Padding(
             padding: const EdgeInsets.all(14.0),
             child: Row(
@@ -61,8 +137,9 @@ class _LoginState extends State<Login> {
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10.0),
                   child:  TextFormField(
+                    controller: emailController,
               //  autocorrect: true,
-                obscureText: true,
+              
                 decoration: InputDecoration(
                   hintText: 'Your Email',
                   prefixIcon: Icon(Icons.person),
@@ -72,17 +149,27 @@ class _LoginState extends State<Login> {
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                           
                   filled: true,
-                  fillColor: Color.fromARGB(255, 206, 245, 235),
+                  fillColor:  HexColor("#EEF9FF"),
                   enabledBorder: OutlineInputBorder(
                   //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide: BorderSide(color:Color.fromARGB(255, 206, 245, 235), width: 2),
+                    borderSide: BorderSide(color: HexColor("#EEF9FF"), width: 2),
+                    
                    ),
+                     
+                   
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Color.fromARGB(255, 206, 245, 235), width: 2),
+                    borderSide: BorderSide(color: HexColor("#EEF9FF"), width: 2),
                   ),
                 ),
-                
+                validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please Enter Email';
+                        } else if (!value.contains('@')) {
+                          return 'Please Enter Valid Email';
+                        }
+                        return null;
+                      },
                 
                 ),
                 
@@ -93,6 +180,7 @@ class _LoginState extends State<Login> {
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10.0),
                   child:  TextFormField(
+                    controller: passwordController,
               //  autocorrect: true,
                 obscureText: true,
                 decoration: InputDecoration(
@@ -104,33 +192,32 @@ class _LoginState extends State<Login> {
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                           
                   filled: true,
-                  fillColor: Color.fromARGB(255, 206, 245, 235),
+                  fillColor:  HexColor("#EEF9FF"),
                   enabledBorder: OutlineInputBorder(
                   //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide: BorderSide(color:Color.fromARGB(255, 206, 245, 235), width: 2),
+                    borderSide: BorderSide(color: HexColor("#EEF9FF"), width: 2),
                    ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Color.fromARGB(255, 206, 245, 235), width: 2),
+                    borderSide: BorderSide(color:  HexColor("#EEF9FF"), width: 2),
                   ),
                 ),
-                
+                validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please Enter password';
+                        }
+                        return null;
+                      },
                 
                 ),
                 
       
                 ),
               
-              Row( mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                 Text(
-                          'Forgot Password ?',
-                          style: TextStyle(fontSize: 14.0, color: Colors.blue),
-                        ),
-              ],),
+             
               
                  
-                       SizedBox(height: 38,),
+                       SizedBox(height: 25,),
                
                      Column(
                     children: [
@@ -139,6 +226,23 @@ class _LoginState extends State<Login> {
                         minWidth: double.infinity,
                         height: 50,
                           onPressed: ()  {
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                               email = emailController.text;
+                            password = passwordController.text;
+                        
+                                });
+                               
+                                  
+
+                              
+                  
+                             
+                                   loginfun(emailController.text, passwordController.text); 
+                              }
+          
+
+                         
                
           
           },
@@ -158,79 +262,17 @@ class _LoginState extends State<Login> {
       
                         ),
                       ),
+                       Row( mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                 Text(
+                          'Forgot Password',
+                          style: TextStyle(fontSize: 14.0, color: Colors.blue),
+                        ),
+              ],),
                     ],
                 ),
                 SizedBox(height: 10,),
-                 // ),
-                   
-                //       TextButton(
-                //         onPressed: () => {
-                //           // Navigator.push(
-                //           //   context,
-                //           //   MaterialPageRoute(
-                //           //     builder: (context) => ForgotPassword(),
-                //           //   ),
-                //           // )
-                //         },
-                //         child: Text(
-                //           'Forgot Password ?',
-                //           style: TextStyle(fontSize: 14.0),
-                //         ),
-                   
-                // ),
-      
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     // Validate returns true if the form is valid, otherwise false.
-                      //     if (_formKey.currentState!.validate()) {
-                      //       setState(() {
-                      //         email = emailController.text;
-                      //         password = passwordController.text;
-                      //       });
-                      //       userLogin();
-                      //     }
-                      //   },
-                      //   child: Text(
-                      //     'Login',
-                      //     style: TextStyle(fontSize: 18.0),
-                      //   ),
-                      // ),
-                     
-                   
-  //               Container(
-  //                 child: Row(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   children: [
-  //                     Text("         Don't have an Account? "),
-  //                     TextButton(
-  //                       onPressed: () => {
-  //                         // Navigator.pushAndRemoveUntil(
-  //                         //     context,
-  //                         //     PageRouteBuilder(
-  //                         //       pageBuilder: (context, a, b) => Signup(),
-  //                         //       transitionDuration: Duration(seconds: 0),
-  //                         //     ),
-  //                         //     (route) => false)
-  //                       },
-  //                       child: Text('Signup', style: TextStyle(
-  //   decoration: TextDecoration.underline,
-  // ),),
-  //                     ),
-  //                     // TextButton(
-  //                     //   onPressed: () => {
-  //                     //     Navigator.pushAndRemoveUntil(
-  //                     //         context,
-  //                     //         PageRouteBuilder(
-  //                     //           pageBuilder: (context, a, b) => UserMain(),
-  //                     //           transitionDuration: Duration(seconds: 0),
-  //                     //         ),
-  //                     //         (route) => false)
-  //                     //   },
-  //                     //   child: Text('Dashboard'),
-  //                     // ),
-  //                   ],
-  //                 ),
-  //               )
+               
               ],
             ),
           ),

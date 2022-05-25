@@ -56,7 +56,7 @@ class _About_usState extends State<About_us> {
                           
                           children: [
                           
-                          Text("ABOUT US___ _", style: TextStyle(fontSize: 25 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                          Text("ABOUT US", style: TextStyle(fontSize: 25 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
                         ],),
                           SizedBox(height: 60,),
                    Row(
