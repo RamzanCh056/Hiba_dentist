@@ -5,12 +5,14 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hiba_dentist/NavigationBar.dart';
+import 'package:hiba_dentist/download_dialiuge.dart';
 import 'package:hiba_dentist/login_user.dart';
 import 'package:hiba_dentist/model/my_profile.dart';
 import 'package:hiba_dentist/model/profile_model.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 class Profile extends StatefulWidget {
   Profile({Key? key}) : super(key: key);
@@ -20,10 +22,13 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  
    Future<myprofile> getprofile() async {
+    // print(token.token.toString());
+    
     var headers = {
-  'Authorization': 'Token 33cb306a91a5e29fad718154b996455f5967d514',
-  'Cookie': 'csrftoken=hS8z5JLORY9sTcjo8KdBYnVrD20h97NMvHClmz6FBnhLaZUvsoPm1K7TNIHIfm6h; sessionid=djqx3wngxhyrga8xxwfuvte98yhxr934'
+  'Authorization': 'Token $token',
+  
 };
 // var request = http.Request('GET', Uri.parse('http://drhibasaadeh.com/api/patients/beforeAfterImg/'));
     var request = await http.get(
@@ -51,8 +56,9 @@ class _ProfileState extends State<Profile> {
   //
   List<profileModel> photosList = [];
   Future<List<profileModel>> sliderfunction() async {
+    print('Token = $token');
     var headers = {
-      'Authorization': 'Token 33cb306a91a5e29fad718154b996455f5967d514'
+      'Authorization': 'Token $token'
     };
 
 // var request = http.Request('GET', Uri.parse('http://drhibasaadeh.com/api/patients/beforeAfterImg/'));
@@ -80,7 +86,7 @@ class _ProfileState extends State<Profile> {
       return photosList;
     } else {
       // print(response.reasonPhrase);
-      print("api not hit");
+      print("api not hit ${request.body} : ${request.statusCode}");
       return photosList;
     }
   }
@@ -94,10 +100,20 @@ class _ProfileState extends State<Profile> {
       });
     });
     super.initState();
+
+    
   }
 
+   bool _isLoadings = true;
+  PDFDocument ?document;
+  loadDocument() async {
+    document = await PDFDocument.fromAsset('assets/shavej.pdf');
+
+    setState(() => _isLoading = false);
+  }
   @override
   Widget build(BuildContext context) {
+
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       home:   Scaffold(
@@ -304,11 +320,18 @@ class _ProfileState extends State<Profile> {
                                                   .toString()),
                                             ],
                                           ),
-                                          Column(
-                                            children: [
-                                              Text(snapshot.data![index].isVisited
-                                                  .toString()),
-                                            ],
+                                          GestureDetector(
+                                            onTap: (){
+                                           setState(() {
+                                              Get.to(  MyAp (),);
+                                           });
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Text(snapshot.data![index].isVisited
+                                                    .toString()),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),

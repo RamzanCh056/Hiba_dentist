@@ -66,7 +66,7 @@ class _About_usState extends State<About_us> {
                           Text("About Us Hiba Saadeh:", style: TextStyle(fontSize: 25 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
                         ],),
                         Container(height: 260,
-                        child: Image.network("http://drhibasaadeh.com/media/uploads/2022/04/04/carousel-1_nwymlkm.jpg",fit: BoxFit.fill,),
+                        child:  Image(image: AssetImage('images/aboutus.jpg',), fit: BoxFit.fill,),
                         ),
                         SizedBox(height: 10,),
                    Padding(

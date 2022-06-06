@@ -80,7 +80,7 @@ if (response.statusCode == 201) {
    final snackBar = SnackBar(
             content: const Text('Message send successfylly'),
             action: SnackBarAction(
-              label: 'Undo',
+              label: '',
               onPressed: () {
                 // Some code to undo the change.
               },
@@ -115,10 +115,10 @@ class _contact_usState extends State<contact_us> {
   var email = "";
   var subject = "";
   var message = "";
-    TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-    TextEditingController subjectController = TextEditingController();
-     TextEditingController messageController = TextEditingController();
+   final nameController = TextEditingController();
+  final emailController = TextEditingController();
+    final subjectController = TextEditingController();
+     final messageController = TextEditingController();
      static const _initialCameraPosition = CameraPosition(
     target: LatLng(31.975697, 35.859400),
     zoom: 11.5,
@@ -147,7 +147,7 @@ class _contact_usState extends State<contact_us> {
     messageController.dispose();
        _googleMapController.dispose();
       // _marker.addAll(_List);
-    super.dispose();
+
     super.dispose();
   }
   // #EEF9FF;
@@ -541,9 +541,10 @@ class _contact_usState extends State<contact_us> {
                                 });
                                
                                   
-
-                              
-                  
+                              //  emailController.clear();
+                              //  nameController.clear();
+                              //   subjectController.clear();
+                              //   messageController.clear();
                              
                                   ContactUs(context, nameController.text, emailController.text, subjectController.text, messageController.text);
                               }

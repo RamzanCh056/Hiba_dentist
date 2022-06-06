@@ -27,6 +27,7 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 
 var result;
 var appointmentslot= "";
+var appointmentslotId= "";
 
 //You can use any Widget
 class MySelectionItem extends StatelessWidget {
@@ -100,7 +101,9 @@ class _MyAppState extends State<MyApp> {
   List<slots> slotsList = [];
   List<availableSlots> availableSlotsList = [];
   List<String> availableSlotsListString = [];
+  bool isLodingDate = false;
   availableSlots selectedSlot;
+
   Future<List<appointment_date>> servicesfunction() async {
     var headers = {
       'Authorization': 'Bearer 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b'
@@ -114,8 +117,9 @@ class _MyAppState extends State<MyApp> {
 
 // http.StreamedResponse response = await request.send();
     var data = jsonDecode(request.body.toString());
-
+    
     if (request.statusCode == 200) {
+      photoList.clear();
       for (Map i in data) {
         appointment_date photos = appointment_date(
             appointDate: i['appoint_date'],
@@ -170,8 +174,8 @@ class _MyAppState extends State<MyApp> {
   }
   sendAppointment(String first_name, String last_name, String mobile_no, String email_id, String appoint_date, String appointmentslos) async{
      try{
-       print('Date = $appoint_date');
-       var date=appoint_date.split('/');
+      /* print('Date = $appoint_date');
+       var date=appoint_date.split('-');
         print('Date 1 ${date[0]} Date 1 ${date[1]} Date 1 ${date[2]}');
         var datecombine="${date[2]}-${date[0]}-${date[1]}";
          print('Slot = $appointmentslos');
@@ -184,10 +188,10 @@ class _MyAppState extends State<MyApp> {
         }
          if(app.length==2){
           slot='${app[0][1]}';
-        }
-        
-          print('$slot');
-           print('$datecombine');
+        }*/
+        var slot = appointmentslos;
+        //  print('$slot');
+          // print('$datecombine');
             print('$first_name');
                print('$last_name');
                   print('$email_id');
@@ -201,13 +205,14 @@ var headers = {
 
        
 
-      var data={'first_name':first_name,'last_name':last_name,'mobile_no':mobile_no,'email_id':email_id,'appoint_date':datecombine.toString(),'app_slot_id':slot.toString()};
+      var data={'first_name':first_name,'last_name':last_name,'mobile_no':mobile_no,'email_id':email_id,'appoint_date':appoint_date.toString(),'app_slot_id':appointmentslos};
 
 
       //It is used for raw data;
       var data1=json.encode(data);
       var response=await post(Uri.parse('http://drhibasaadeh.com/api/patients/appointment/'),
-          body: data1,headers: headers
+          body: data1,
+          headers: headers
       );
       print('Status Code= ${response.body}');
       if(response.statusCode==201){
@@ -368,10 +373,10 @@ else {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          SizedBox(
+                         const SizedBox(
                             height: 10,
                           ),
-                          Center(
+                          const Center(
                             child: Text(
                               'Make Appointment',
                               style: TextStyle(
@@ -386,8 +391,10 @@ else {
                               margin: EdgeInsets.symmetric(vertical: 10.0),
                               child: TextFormField(
                                 //  autocorrect: true,
+                               keyboardType:TextInputType.text,
               
                                 decoration: InputDecoration(
+                                   
                                   hintText: 'First Name',
                                   prefixIcon: Icon(Icons.person),
                                   hintStyle: TextStyle(color: Colors.grey),
@@ -412,7 +419,11 @@ else {
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please Enter Name';
+                                    
                                   }
+                                  else if (value.contains('123')) {
+                            return 'Please Enter valid name text only';
+                          }
                                   return null;
                                 },
                               ),
@@ -451,8 +462,10 @@ else {
                                   if (value == null || value.isEmpty) {
                                     return 'Please Enter Name';
                                   }
+                                   else if (value.contains('123')) {
+                            return 'Please Enter valid last name text only';
                                   return null;
-                                },
+                                }},
                               ),
                             ),
                           ),
@@ -466,7 +479,7 @@ else {
                                 decoration: InputDecoration(
                                   hintText: 'Your Mobile',
                                   
-                                  prefixIcon: Icon(Icons.mobile_friendly),
+                                  prefixIcon: const Icon(Icons.mobile_friendly),
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: OutlineInputBorder(),
                                   errorStyle: TextStyle(
@@ -539,40 +552,52 @@ else {
                             padding: const EdgeInsets.only(
                                 left: 8, right: 8, top: 8, bottom: 8),
                             child: Container(
-                              child: TextFormField(
-                              
-                                focusNode: AlwaysDisabledFocusNode(),
-                               controller: appointmentController,
-                                decoration: InputDecoration(
-                                    prefixIcon: Icon(Icons.date_range),
-                                    border: OutlineInputBorder(),
-                                    errorStyle: TextStyle(
-                                        color: Colors.redAccent, fontSize: 15),
-                                    filled: true,
-                                    fillColor: HexColor("#EEF9FF"),
-                                    enabledBorder: OutlineInputBorder(
-                                      //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      borderSide: BorderSide(
-                                          color: HexColor("#EEF9FF"), width: 2),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10.0)),
-                                      borderSide: BorderSide(
-                                          color: HexColor("#EEF9FF"), width: 2),
-                                    ),
-                                    hintText: 'Appointment Date'),
+                              child:  Stack(
+                                children: [
+                                  TextFormField(
+                                  
+                                    focusNode: AlwaysDisabledFocusNode(),
+                                    controller: appointmentController,
+                                    decoration: InputDecoration(
+                                        prefixIcon: Icon(Icons.date_range),
+                                        border: OutlineInputBorder(),
+                                        errorStyle: TextStyle(
+                                            color: Colors.redAccent, fontSize: 15),
+                                        filled: true,
+                                        fillColor: HexColor("#EEF9FF"),
+                                        enabledBorder: OutlineInputBorder(
+                                          //  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                          borderSide: BorderSide(
+                                              color: HexColor("#EEF9FF"), width: 2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.all(Radius.circular(10.0)),
+                                          borderSide: BorderSide(
+                                              color: HexColor("#EEF9FF"), width: 2),
+                                        ),
+                                        hintText: 'Appointment Date'),
               
-                                onTap: () => _selectDate(),
-                                //  autocorrect: true,
+                                    onTap: () async{
+                                      await _selectDate();
+
+                                    } ,
+                                    //  autocorrect: true,
               
-                                
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please Enter date';
-                                  }
-                                  return null;
-                                },
+                                    
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please Enter date';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                   if(isLodingDate)
+                                   const Padding(
+                                      padding: EdgeInsets.only(top:12.0),
+                                      child: Center(child: CircularProgressIndicator(),),
+                                    ),
+                                ],
                               ),
                               //  Card(
                               //   margin: const EdgeInsets.fromLTRB(40, 150, 40, 150),
@@ -603,9 +628,9 @@ else {
                                 focusNode: AlwaysDisabledFocusNode(),
                               //  controller: appointmentController,
                                 decoration: InputDecoration(
-                                    prefixIcon: Icon(Icons.timer),
-                                    border: OutlineInputBorder(),
-                                    errorStyle: TextStyle(
+                                    prefixIcon: const Icon(Icons.timer),
+                                    border: const OutlineInputBorder(),
+                                    errorStyle: const TextStyle(
                                         color: Colors.redAccent, fontSize: 15),
                                     filled: true,
                                     fillColor: HexColor("#EEF9FF"),
@@ -620,12 +645,15 @@ else {
                                       borderSide: BorderSide(
                                           color: HexColor("#EEF9FF"), width: 2),
                                     ),
-                                      hintText: ' $appointmentslot' ),
+                                      hintText: ' $appointmentslot',
+                                      hintStyle: const TextStyle(color: Colors.black,), ),
                                         
-                                onTap: () async {   showPickerArray(context);
+                                onTap: () async {   
+                                  if(!isLodingDate) {
+                                    showPickerArray(context);
+                                  }
                                 //  setState(() async{
                                 //    await
-                                     
                                 //     });
                                 
                                 },
@@ -737,18 +765,15 @@ else {
                         
                                 });
                                
-                                  
-
-                              
-                  
                              
-                                    servicesfunction();
-                                sendAppointment(firstnameController.text, lastnameController.text, mobileController.text, emailController.text, appointmentController.text.toString() ,appointmentslot.toString());
+                                    //servicesfunction();
+                                sendAppointment(firstnameController.text, lastnameController.text, mobileController.text, emailController.text, 
+                                                appointmentController.text.toString() ,appointmentslotId.toString());
                               }
                                
                                
                               },
-                              child: Text(
+                              child: const Text(
                                 'Make Appointment',
                                 style: TextStyle(
                                     color: Colors.white,
@@ -763,27 +788,29 @@ else {
                                   AsyncSnapshot<List<appointment_date>>
                                       snapshot) {
                                 if (snapshot.data != null) {
-                                  var first = 'http://drhibasaadeh.com';
+                                 // var first = 'http://drhibasaadeh.com';
+                                  
                                   return Center();
                                 } else {
-                                  return Center(
+                                  return const Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 }
                               }),
-                          FutureBuilder(
+                         /* FutureBuilder(
                               future: slot(),
                               builder:
                                   (context, AsyncSnapshot<List<slots>> snapshot) {
                                 if (snapshot.data != null) {
-                                  var first = 'http://drhibasaadeh.com';
-                                  return Center();
+                                 // var first = 'http://drhibasaadeh.com';
+                                  return const Center();
                                 } else {
-                                  return Center(
+                                  return const Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 }
                               }),
+                          */
                         ],
                       ),
                     ),
@@ -822,45 +849,79 @@ else {
 
   String sanitizeDateTime(DateTime dateTime) => dateFormat.format(dateTime);
   _selectDate() async {
-    var firstDate = photoList.first.appointDate?.split('-');
-
-    print("mydate" + "$firstDate");
-    print("mydate" +
-        "${DateTime(int.parse(firstDate[0]), int.parse(firstDate[1]), int.parse(firstDate[2]))}");
+   // var firstDate = photoList.first.appointDate?.split('-');
+   // print("mydate" + "$firstDate");
+  //  print("mydate" +  "${DateTime(int.parse(firstDate[0]), int.parse(firstDate[1]), int.parse(firstDate[2]))}");
+    var fstDate  =  DateFormat("yyyy-MM-dd").format(DateTime.now());
+    fstDate = fstDate.replaceAll('/', "-");
+    dynamic initDate;
+    int weekDay = DateTime.now().weekday;
+    //DateTime(int.parse(firstDate[0]), int.parse(firstDate[1]), int.parse(firstDate[2]));
+   
+    
+    while(initDate == null)
+    {
+      if (photoList.where((element) => element.appointDate == fstDate).isEmpty 
+          && weekDay != 5) {
+        initDate = fstDate;
+      } else {
+        var oneDay = DateTime.now().add(const Duration(days: 1));
+        weekDay  = oneDay.weekday;
+        fstDate  =  DateFormat("yyyy-MM-dd").format(oneDay);
+      }
+    }
+    List<String> tFirstDate =  fstDate.split('-');
+    
+    var firstDate = DateTime(int.parse(tFirstDate[0]), int.parse(tFirstDate[1]), int.parse(tFirstDate[2]));
+    List<String> tInitDate = appointmentController.text.split('-');
+    if(appointmentController.text.trim()!='')
+    {
+      initDate = DateTime(int.parse(tInitDate[0]), int.parse(tInitDate[1]), int.parse(tInitDate[2]));
+    }
+    else{
+      initDate = firstDate;
+    }
     final DateTime picked = await showDatePicker(
         context: context,
-        initialDate: DateTime(int.parse(firstDate[0]), int.parse(firstDate[1]),
-            int.parse(firstDate[2])),
+        initialDate: initDate,
         initialDatePickerMode: DatePickerMode.day,
-        firstDate: 
-        DateTime(2022),
+        firstDate: firstDate,//DateTime(2022),
         lastDate: DateTime(2060),
         selectableDayPredicate: (DateTime val) {
           String sanitized = sanitizeDateTime(val);
           bool result = photoList
               .where((element) => element.appointDate == sanitized)
-              .isNotEmpty;
+              .isEmpty;
           print("sanitized" + sanitized + result.toString());
-          return result;
+          var weekDay = DateFormat.EEEE().format(val);
+          return result && val.weekday != 5;
         });
     // _decideWhichDayToEnable(dateTime);
     if (picked != null) {
+      isLodingDate = true;
+      setState(() {
+        
+      });
       dateTime = picked;
+      await slot();
       //assign the chosen date to the controller
-      appointmentController.text = DateFormat.yMd().format(dateTime);
+      appointmentController.text = DateFormat("yyyy-MM-dd").format(dateTime);
+
+   /*   var pickedDate = DateFormat("yyyy-MM-dd").format(dateTime);
       var headers = {
         'Authorization': 'Bearer 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b'
       };
       var particularDaySlots = await http.get(
-          Uri.parse(
+          Uri.parse(                                
               'http://drhibasaadeh.com/api/patients/appointmentSlot/${dateTime}/slot/'),
-          headers: headers);
+          headers: headers
+          );
 
 // request.headers.addAll(headers);
 
 // http.StreamedResponse response = await request.send();
       var data = jsonDecode(particularDaySlots.body.toString());
-
+*/
       // if (particularDaySlots.statusCode == 200) {
       //   for (Map i in data) {
       //     slot availableSlot =
@@ -871,10 +932,10 @@ else {
     }
   }
 
-  showPickerArray(context) {
+  showPickerArray(context) async{
     print("newobject ${availableSlotsList}");
-
-    if (availableSlotsListString.length > 0) {
+    
+    if (availableSlotsListString.isNotEmpty) {
       availableSlotsListString.clear();
     }
 
@@ -884,19 +945,24 @@ else {
     setState(() {
       
     });
-    new Picker(
+    Picker(
+        
         adapter: PickerDataAdapter<String>(
             pickerdata: availableSlotsListString.toSet().toList(),
             isArray: false),
         hideHeader: true,
-        title: new Text("Please Select"),
+        title: const Text("Please Select"),
         
         onConfirm: (Picker picker, List value) {
         setState(() {
             print('dfgtrg'+value.toString());
           print(picker.getSelectedValues());
           print("picker"+picker.toString());
-           appointmentslot= picker.getSelectedValues().toString();
+           appointmentslot   = picker.getSelectedValues().toString();
+           appointmentslot = appointmentslot.replaceAll('[', '').replaceAll(']', '');
+           slots elem = slotsList.firstWhere((element) => element.time == appointmentslot);
+           appointmentslotId = elem.id.toString(); 
+           //value[0].toString();//
            print('your appointment slot'+appointmentslot);
         });
         }).showDialog(context);
@@ -921,11 +987,12 @@ else {
 
 // http.StreamedResponse response = await request.send();
     var data = jsonDecode(request.body.toString());
-
+    slotsList.clear();
     if (request.statusCode == 200) {
       for (Map i in data) {
         slots availableSlot =
-            slots(id: i['id'], status: i['status'], time: i['time']);
+            slots(id: i['id'], status: i['status'], time: DateFormat.jm().format(DateFormat("hh:mm:ss").parse(i['time'])) //i['time']
+            );
         slotsList.add(availableSlot);
       }
       var list = slotsList.where((element) => element.status == true).toList();
@@ -941,6 +1008,11 @@ else {
       print(availableSlotsList.first.name);
       // print(await response.stream.bytesToString());
       print("api is hit on carsol");
+
+      setState(() {
+         isLodingDate = false;
+        
+      });
       return slotsList;
     } else {
       // print(response.reasonPhrase);
@@ -948,6 +1020,11 @@ else {
       var list = slotsList.where((element) => element.status == true).toList();
       list.forEach((slots a) =>
           availableSlotsList.add(availableSlots(name: a.time.toString())));
+
+      setState(() {
+         isLodingDate = false;
+        
+      });
       return slotsList;
     }
   }

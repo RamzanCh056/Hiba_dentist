@@ -2,7 +2,7 @@
     package="com.example.hiba_dentist">
      <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
-         
+        <uses-permission  android:name="android.permission.WAKE_LOCK"/>
 <queries>
   <!-- If your app opens https URLs -->
   <intent>
@@ -65,4 +65,10 @@
            android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyBVMl4mg3VKlHwO-ZN5w4zFU1uTPbBaMPM" />
     </application>
+    <queries>
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="https" />
+  </intent>
+</queries>
 </manifest>

@@ -238,32 +238,22 @@ class _HomePageState extends State<HomePage> {
           children: [
             // CarouselSlider(
             //   items: [
-         
-         
- 
-            FutureBuilder(
-              
-                future: sliderfunction(),
-                
-                builder: (context, AsyncSnapshot<List<slider_model>> snapshot) {
-                  if (snapshot.data != null) {
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        // scrollDirection: ax,
-                        //    physics: NeverScrollableScrollPhysics(),
-                        itemCount:   1,
-                        itemBuilder: (context, index) {
-                          return SizedBox(
+          SizedBox(
   height: 250.0,
   width: 400,
   child: Carousel(
    
     images: [
-      NetworkImage( '${first + snapshot.data![0].carouselImage.toString()}',),
-      NetworkImage( '${first + snapshot.data![1].carouselImage.toString()}',),
-         NetworkImage( '${first + snapshot.data![2].carouselImage.toString()}',),
-            NetworkImage( '${first + snapshot.data![3].carouselImage.toString()}',),
-               NetworkImage( '${first + snapshot.data![4].carouselImage.toString()}',),
+      AssetImage("images/carouselone.jpg"),
+       AssetImage("images/carouseltwo.jpg"),
+         AssetImage("images/carouselthre.jpg"),
+           AssetImage("images/carouselfour.jpeg"),
+             AssetImage("images/carouselfive.jpeg"),
+      // NetworkImage( '${first + snapshot.data![0].carouselImage.toString()}',),
+      // NetworkImage( '${first + snapshot.data![1].carouselImage.toString()}',),
+      //    NetworkImage( '${first + snapshot.data![2].carouselImage.toString()}',),
+      //       NetworkImage( '${first + snapshot.data![3].carouselImage.toString()}',),
+      //          NetworkImage( '${first + snapshot.data![4].carouselImage.toString()}',),
                   
     ],
      
@@ -274,20 +264,66 @@ class _HomePageState extends State<HomePage> {
       dotBgColor: Colors.transparent,
       borderRadius: false,
       moveIndicatorFromBottom: 180.0,
-      noRadiusForIndicator: true,
+     noRadiusForIndicator: true,
       overlayShadow: false,
-      overlayShadowColors: Colors.white,
-      overlayShadowSize: 0.7,
+     overlayShadowColors: Colors.white,
+     overlayShadowSize: 0.7,
   )
-);
-                        });
-                  } else {
-                    return Center(
+),
+         
+ 
+//             FutureBuilder(
+              
+//                 future: sliderfunction(),
+                
+//                 builder: (context, AsyncSnapshot<List<slider_model>> snapshot) {
+//                   if (snapshot.data != null) {
+//                     return ListView.builder(
+//                         shrinkWrap: true,
+//                         // scrollDirection: ax,
+//                         //    physics: NeverScrollableScrollPhysics(),
+//                         itemCount:   1,
+//                         itemBuilder: (context, index) {
+//                           return SizedBox(
+//   height: 250.0,
+//   width: 400,
+//   child: Carousel(
+   
+//     images: [
+//       AssetImage("images/carouselone.jpg"),
+//        AssetImage("images/carouseltwo.jpg"),
+//          AssetImage("images/carouselthre.jpg"),
+//            AssetImage("images/carouselfour.jpeg"),
+//              AssetImage("images/carouselfive.jpeg"),
+//       // NetworkImage( '${first + snapshot.data![0].carouselImage.toString()}',),
+//       // NetworkImage( '${first + snapshot.data![1].carouselImage.toString()}',),
+//       //    NetworkImage( '${first + snapshot.data![2].carouselImage.toString()}',),
+//       //       NetworkImage( '${first + snapshot.data![3].carouselImage.toString()}',),
+//       //          NetworkImage( '${first + snapshot.data![4].carouselImage.toString()}',),
+                  
+//     ],
+     
+//     //   dotSize: 7.0,
+//     //   dotSpacing: 15.0,
+//     //   dotColor: Color.fromARGB(255, 1, 11, 66),
+//     //   indicatorBgPadding: 12.0,
+//     //   dotBgColor: Colors.transparent,
+//     //   borderRadius: false,
+//     //   moveIndicatorFromBottom: 180.0,
+//     //  noRadiusForIndicator: true,
+//     //   overlayShadow: false,
+//    //   overlayShadowColors: Colors.white,
+//      // overlayShadowSize: 0.7,
+//   )
+// );
+//                         });
+//                   } else {
+//                     return Center(
                         
-                         child: CircularProgressIndicator(),
-                            );
-                  }
-                }),
+//                          child: CircularProgressIndicator(),
+//                             );
+//                   }
+//                 }),
 
             //             ],options: CarouselOptions(
             //     height: 100,
@@ -332,17 +368,17 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Mon - Wed".tr,
+                       "Mon-Wed",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       Text(
-                        "10:00am - 7:00pm".tr,
+                        "10:00am - 7:00pm",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       )
                     ],
                   ),
                   SizedBox(
-                    height: 18,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -639,9 +675,9 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             "Cosmetic Dentistry ",
                                             style: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 20, 
                                               color: Color.fromARGB(
-                                                  255, 1, 11, 66),
+                                                  255, 1, 11, 66,),
                                              
                                             ),
                                           ),

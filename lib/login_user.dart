@@ -12,7 +12,7 @@ import 'package:hiba_dentist/profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart' ;
 
-
+var token;
 class LoginUser extends StatelessWidget {
   const LoginUser({ Key? key }) : super(key: key);
 
@@ -55,7 +55,14 @@ request.headers.addAll(headers);
 http.StreamedResponse response = await request.send();
 
 if (response.statusCode == 200) {
-  print(await response.stream.bytesToString());
+  var tok=await response.stream.bytesToString();
+  var token1=jsonDecode(tok);
+  token=token1['token'];
+  // var crs=tok.toString().split(':');
+  // print('this is Token ${tok1["token"]} : ${tok1.runtimeType}');
+  // print('this is token${token[0]}');
+    
+  print( response);
   print("api is hit on login");
     Get.snackbar(
               "",

@@ -136,18 +136,18 @@ if (await canLaunch(url)) {
                     ),
                  ),
                      Divider(thickness: 1,color: Colors.grey),
-                     ElevatedButton(
-                onPressed: () {
-                  buildLanguageDialog(context);
-                },
-                child: Text('changelang'.tr)),
-                        SizedBox(height: 10,),
+                //      ElevatedButton(
+                // onPressed: () {
+                //   buildLanguageDialog(context);
+                // },
+                // child: Text('changelang'.tr)),
+                //         SizedBox(height: 10,),
 
-                        SizedBox(height: 70,),
+                       SizedBox(height: 70,),
                      Column(
                        mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                       Text('message'.tr, style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
+                       Text('Follow us'.tr, style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
                         SizedBox(height: 10,),
                     Divider(thickness: 1,color: Colors.grey),
                  GestureDetector(

@@ -217,7 +217,7 @@ class _ServicesState extends State<Services> {
                      child: Row(
                           
                           children: [
-                          Text("OUR SERVICES", style: TextStyle(fontSize: 20 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                          Text("OUR SERVICES", style: TextStyle(fontSize: 24 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
                         ],),
                    ),
                    Padding(
