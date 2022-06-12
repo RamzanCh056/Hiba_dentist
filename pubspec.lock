@@ -555,6 +555,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  pspdfkit_flutter:
+    dependency: "direct main"
+    description:
+      name: pspdfkit_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.4.0"
   rxdart:
     dependency: transitive
     description:

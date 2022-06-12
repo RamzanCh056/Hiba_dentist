@@ -25,14 +25,13 @@ import 'package:http/http.dart' ;
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 
 
-var result;
-var appointmentslot= "";
-var appointmentslotId= "";
+
 
 //You can use any Widget
 class MySelectionItem extends StatelessWidget {
   final String title;
   final bool isForList;
+  
 
   const MySelectionItem({Key key, this.title, this.isForList = true})
       : super(key: key);
@@ -103,6 +102,9 @@ class _MyAppState extends State<MyApp> {
   List<String> availableSlotsListString = [];
   bool isLodingDate = false;
   availableSlots selectedSlot;
+  var result;
+var appointmentslot= "";
+var appointmentslotId= "";
 
   Future<List<appointment_date>> servicesfunction() async {
     var headers = {
@@ -157,6 +159,7 @@ class _MyAppState extends State<MyApp> {
     TextEditingController  mobileController = TextEditingController();
      TextEditingController emailController = TextEditingController();
       TextEditingController appointmentController = TextEditingController();
+       
        @override
  
   void dispose() {
@@ -166,7 +169,7 @@ class _MyAppState extends State<MyApp> {
     mobileController.dispose();
     appointmentController.dispose();
      lastnameController.dispose();
-
+   // appointmentslots .dispose();
    
       // _marker.addAll(_List);
     super.dispose();
@@ -265,7 +268,7 @@ var headers = {
                borderRadius: 20,
                margin: EdgeInsets.all(15),
                colorText: Colors.red,
-               messageText: Text("Appointment is already booked plz try another slots", style: TextStyle(color: Colors.white),),
+               messageText: Text("Server Error plz try again letter", style: TextStyle(color: Colors.white),),
                duration: Duration(seconds: 4),
                isDismissible: true,
               
@@ -580,7 +583,11 @@ else {
               
                                     onTap: () async{
                                       await _selectDate();
-
+                                      //  await Future.delayed(Duration(seconds: 2));
+                                        setState(() {
+                                          appointmentslot=  "";
+                                        });
+                                        
                                     } ,
                                     //  autocorrect: true,
               
@@ -626,7 +633,7 @@ else {
                               return Container(
                               child: TextFormField(
                                 focusNode: AlwaysDisabledFocusNode(),
-                              //  controller: appointmentController,
+                             
                                 decoration: InputDecoration(
                                     prefixIcon: const Icon(Icons.timer),
                                     border: const OutlineInputBorder(),
@@ -645,12 +652,15 @@ else {
                                       borderSide: BorderSide(
                                           color: HexColor("#EEF9FF"), width: 2),
                                     ),
-                                      hintText: ' $appointmentslot',
+                                      hintText: '$appointmentslot',
+                                      
                                       hintStyle: const TextStyle(color: Colors.black,), ),
                                         
                                 onTap: () async {   
                                   if(!isLodingDate) {
                                     showPickerArray(context);
+                                  
+                                      
                                   }
                                 //  setState(() async{
                                 //    await
@@ -769,6 +779,7 @@ else {
                                     //servicesfunction();
                                 sendAppointment(firstnameController.text, lastnameController.text, mobileController.text, emailController.text, 
                                                 appointmentController.text.toString() ,appointmentslotId.toString());
+                                              //  print( appointmentslots);
                               }
                                
                                
@@ -782,6 +793,8 @@ else {
                               ),
                             ),
                           ),
+                           SizedBox(height: 10,),
+                       
                           FutureBuilder(
                               future: servicesfunction(),
                               builder: (context,

@@ -6,6 +6,8 @@ import 'dart:ffi';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/instance_manager.dart';
 import 'package:hiba_dentist/drawer.dart';
 import 'package:hiba_dentist/model/before_after.dart';
 import 'package:hiba_dentist/model/feedback_model.dart';
@@ -21,7 +23,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter/services.dart';
-final _formKey = GlobalKey<FormState>();
+//final _formKey = GlobalKey<FormState>();
 class contact_us extends StatefulWidget {
   const contact_us({ Key? key }) : super(key: key);
 
@@ -89,10 +91,13 @@ if (response.statusCode == 201) {
 
       
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+           
+          
 }
 else {
   print(response.reasonPhrase);
     print("Api is Not Hit");
+     
      final snackBar = SnackBar(
             content: const Text('Something went wrong plz try again letter'),
             action: SnackBarAction(
@@ -104,13 +109,15 @@ else {
           );
 
       
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        
 }
 
     }
 
 class _contact_usState extends State<contact_us> {
+   final _formKey = GlobalKey<FormState>();
    var name = "";
   var email = "";
   var subject = "";
@@ -123,7 +130,26 @@ class _contact_usState extends State<contact_us> {
     target: LatLng(31.975697, 35.859400),
     zoom: 11.5,
   );
+ @override
+ 
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    nameController.dispose();
+    subjectController.dispose();
+    messageController.dispose();
+       _googleMapController.dispose();
+      // _marker.addAll(_List);
 
+    super.dispose();
+  }
+  @override
+void initState() {
+  super.initState();
+
+  // Start listening to changes.
+  //emailController.addListener( emailController);
+}
   late GoogleMapController _googleMapController;
   //Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
@@ -137,19 +163,7 @@ class _contact_usState extends State<contact_us> {
   //  )
   //  ];
 
-  @override
  
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    emailController.dispose();
-    nameController.dispose();
-    subjectController.dispose();
-    messageController.dispose();
-       _googleMapController.dispose();
-      // _marker.addAll(_List);
-
-    super.dispose();
-  }
   // #EEF9FF;
   
   @override
@@ -545,9 +559,20 @@ class _contact_usState extends State<contact_us> {
                               //  nameController.clear();
                               //   subjectController.clear();
                               //   messageController.clear();
+                             setState(() {
                              
+                             });
                                   ContactUs(context, nameController.text, emailController.text, subjectController.text, messageController.text);
+                              setState(() async {
+                                     await Future.delayed(Duration(seconds: 2));
+                                        emailController.clear();
+                               nameController.clear();
+                               subjectController.clear();
+                                messageController.clear();
+                              });
+                             
                               }
+
           
           },
                        

@@ -34,21 +34,22 @@ class _About_usState extends State<About_us> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child:_isLoading
-            ? Center(
-                child:Container(
-                  width: 80,
-             child:   LoadingIndicator(
-    indicatorType: Indicator.ballBeat, /// Required, The loading type of the widget
-    colors: const [Color.fromARGB(255, 1, 11, 66),],       /// Optional, The color collections
-    strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
-        /// Optional, Background of the widget
-    pathBackgroundColor: Colors.blue   /// Optional, the stroke backgroundColor
-)
+          child:
+          //_isLoading
+//             ? Center(
+//                 child:Container(
+//                   width: 80,
+//              child:   LoadingIndicator(
+//     indicatorType: Indicator.ballBeat, /// Required, The loading type of the widget
+//     colors: const [Color.fromARGB(255, 1, 11, 66),],       /// Optional, The color collections
+//     strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
+//         /// Optional, Background of the widget
+//     pathBackgroundColor: Colors.blue   /// Optional, the stroke backgroundColor
+// )
 
-                ),
+//                 ),
                
-              ):
+//               ):
           
            ListView(children: [
                       SizedBox(height: 30,),
@@ -56,9 +57,9 @@ class _About_usState extends State<About_us> {
                           
                           children: [
                           
-                          Text("ABOUT US", style: TextStyle(fontSize: 25 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
+                          //Text("ABOUT US", style: TextStyle(fontSize: 25 , color:  Color.fromARGB(255, 1, 11, 66) ,fontWeight: FontWeight.bold,), ),
                         ],),
-                          SizedBox(height: 60,),
+                        //  SizedBox(height: 30,),
                    Row(
                           
                           children: [

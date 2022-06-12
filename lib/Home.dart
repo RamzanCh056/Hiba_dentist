@@ -1017,20 +1017,23 @@ class _HomePageState extends State<HomePage> {
                       // top: 545,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: Card(
-                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                          child: Container(
-                            height: 50,
-                            width: 150,
-                            child: Center(
-                                child: Text(
-                              "Appointment",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
+                        child: GestureDetector(
+                           onTap: (){Get.to( appointment());},
+                          child: Card(
+                            color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                            child: Container(
+                              height: 50,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                "Appointment",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ),
                           ),
                         ),
                       ),
@@ -1141,20 +1144,23 @@ class _HomePageState extends State<HomePage> {
                       // top: 545,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: Card(
-                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                          child: Container(
-                            height: 50,
-                            width: 150,
-                            child: Center(
-                                child: Text(
-                              "Appointment",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
+                        child: GestureDetector(
+                           onTap: (){Get.to( appointment());},
+                          child: Card(
+                            color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                            child: Container(
+                              height: 50,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                "Appointment",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ),
                           ),
                         ),
                       ),
@@ -1263,20 +1269,23 @@ class _HomePageState extends State<HomePage> {
                       // top: 545,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: Card(
-                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                          child: Container(
-                            height: 50,
-                            width: 150,
-                            child: Center(
-                                child: Text(
-                              "Appointment",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
+                        child: GestureDetector(
+                           onTap: (){Get.to( appointment());},
+                          child: Card(
+                            color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                            child: Container(
+                              height: 50,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                "Appointment",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ),
                           ),
                         ),
                       ),
@@ -1385,20 +1394,23 @@ class _HomePageState extends State<HomePage> {
                       // top: 545,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: Card(
-                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                          child: Container(
-                            height: 50,
-                            width: 150,
-                            child: Center(
-                                child: Text(
-                              "Appointment",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
+                        child: GestureDetector(
+                           onTap: (){Get.to( appointment());},
+                          child: Card(
+                            color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                            child: Container(
+                              height: 50,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                "Appointment",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ),
                           ),
                         ),
                       ),
@@ -1507,20 +1519,23 @@ class _HomePageState extends State<HomePage> {
                       // top: 545,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: Card(
-                          color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
-                          child: Container(
-                            height: 60,
-                            width: 150,
-                            child: Center(
-                                child: Text(
-                              "Appointment",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
+                        child: GestureDetector(
+                           onTap: (){Get.to( appointment());},
+                          child: Card(
+                            color: Color.fromARGB(255, 1, 11, 66), //  elevation: 5,
+                            child: Container(
+                              height: 60,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                "Appointment",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ),
                           ),
                         ),
                       ),

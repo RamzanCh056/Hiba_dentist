@@ -59,6 +59,7 @@ dependencies:
   dio: ^4.0.6
   advance_pdf_viewer: ^2.0.1
   flutter_pdfview: ^1.2.2
+  pspdfkit_flutter: ^2.0.0
  
 
 

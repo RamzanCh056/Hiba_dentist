@@ -269,13 +269,13 @@ else {
       
                         ),
                       ),
-                       Row( mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                 Text(
-                          'Forgot Password',
-                          style: TextStyle(fontSize: 14.0, color: Colors.blue),
-                        ),
-              ],),
+              //          Row( mainAxisAlignment: MainAxisAlignment.start,
+              //   children: [
+              //    Text(
+              //             'Forgot Password',
+              //             style: TextStyle(fontSize: 14.0, color: Colors.blue),
+              //           ),
+              // ],),
                     ],
                 ),
                 SizedBox(height: 10,),

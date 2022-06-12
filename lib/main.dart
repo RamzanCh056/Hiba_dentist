@@ -31,10 +31,6 @@ class MyApp extends StatelessWidget {
       ),
       home:   
       SplashScreen (),
-
-      //MaterialYou(),
-     // MainBottomClass(),
-      // LoginUser(),
     );
   }
 }
